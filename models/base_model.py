@@ -24,6 +24,7 @@ class BaseModel:
         
     def to_dict(self):
         """to dictionary"""
+        new_dict = {}
         new_dict = self.__dict__.copy()
         new_dict["created_at"] = self.created_at
         new_dict["updated_at"] = self.updated_at
