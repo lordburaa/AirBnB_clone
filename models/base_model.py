@@ -13,7 +13,7 @@ class BaseModel:
         """inistantiatio"""
         self.created_at = datetime.now()
         self.id = str(uuid.uuid4())
-        self.updated_at = self.created_at
+        self.updated_at = datetime.now()
 
     def __str__(self):
         """str representation"""
