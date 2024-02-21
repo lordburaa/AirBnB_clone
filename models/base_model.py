@@ -11,8 +11,8 @@ class BaseModel:
     """base Model class creaed"""
     def __init__(self, *args, **kwargs):
         """inistantiatio"""
-        self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
+        self.id = str(uuid.uuid1())
         self.updated_at = self.created_at
 
     def __str__(self):
