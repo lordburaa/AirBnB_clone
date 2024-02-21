@@ -19,8 +19,7 @@ class BaseModel:
         """str representation"""
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
     
-    @staticmethod
-    def updated_at():
+    def updated_at(self):
         """updated at"""
         self.updated_at = str(datetime.now().isoformat('-'))
 
