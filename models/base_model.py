@@ -29,4 +29,5 @@ class BaseModel:
         new_dict["updated_at"] = self.updated_at
         new_dict["__class__"] = type(self).__name__
         sort_t = dict(sorted(new_dict.items(), reverse=True))
-        return sort_t
+        self.__dict__ = new_dict.copy()
+        return self.__dict__
