@@ -21,7 +21,7 @@ class BaseModel:
 
     def save(self):
         """save the time"""
-        self.updated = datetime.now()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """to dictionary"""
