@@ -1,10 +1,19 @@
 #!/usr/bin/python3
 """
-Base mode
+Module for the Base Class
+-public instnace attributes
+    -id
+    -created_at
+    -updated_at
+
+-Public instnace methods
+    -save(self) - updates the updated_at attribute
+    -to_dict(self) - returns dictionary
 
 """
-from datetime import datetime, time
+from datetime import datetime
 import uuid
+
 
 class BaseModel:
     """base Model class creaed"""
@@ -21,7 +30,7 @@ class BaseModel:
     def save(self):
         """save the time"""
         self.updated_at = datetime.now()
-        
+
     def to_dict(self):
         """to dictionary"""
         new_dict = self.__dict__.copy()
