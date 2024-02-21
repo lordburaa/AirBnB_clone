@@ -28,5 +28,5 @@ class BaseModel:
         new_dict["created_at"] = self.created_at
         new_dict["updated_at"] = self.updated_at
         new_dict["__class__"] = self.__class__.__name__
-        #sort_t = dict(sorted(new_dict.items(), reverse=True))
+        sort_t = dict(sorted(new_dict.items(), reverse=True))
         return self.__dict__
