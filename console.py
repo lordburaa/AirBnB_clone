@@ -10,7 +10,7 @@ class cm(cmd.Cmd):
     def do_quit(self):
         """quit interuption signal"""
         return True
- 
+
     def do_EOF(self, line):
         """Exis the interactive shell"""
         return True
