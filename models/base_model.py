@@ -12,22 +12,21 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """inistantiatio"""
         self.id = str(uuid.uuid4())
-        self.created_at = str(datetime.now().isoformat('-'))
-        self.updated_at = str(datetime.now().isoformat('-'))
+        self.created_at = datetime.now()
+        self.updated_at = self.created_at
 
     def __str__(self):
         """str representation"""
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
-    
-    def updated_at(self):
-        """updated at"""
-        self.updated_at = str(datetime.now().isoformat('-'))
 
     def save(self):
         """save the time"""
-        self.updated = str(datetime.now().isoformat('-'))
+        self.updated = datetime.now()
 
     def to_dict(self):
         """to dictionary"""
-        self.__dict__["__class__"] = "BaseModel"
-        return self.__dict__
+        new_dict = self.__dict__.copy()
+        new_dict["__class__"] = type(self).__name__
+        new_dict["created_at"] = new_dict["created_at"].isoformat()
+        new_dict["updated_at"] = new_dict["updated_at"].isoformat()
+        return new_dict
