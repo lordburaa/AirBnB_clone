@@ -3,15 +3,14 @@
 Base mode
 
 """
-from datetime import datetime
+from datetime import datetime, time
 import uuid
-
 
 class BaseModel:
     """base Model class creaed"""
     def __init__(self, *args, **kwargs):
         """inistantiatio"""
-        self.created_at = datetime.now()
+        self.created_at = datetime.now().isoformat()
         self.id = str(uuid.uuid4())
         self.updated_at = datetime.now()
 
@@ -22,12 +21,12 @@ class BaseModel:
     def save(self):
         """save the time"""
         self.updated_at = datetime.now()
-
+        
     def to_dict(self):
         """to dictionary"""
         new_dict = self.__dict__.copy()
-        new_dict["created_at"] = new_dict["created_at"].isoformat()
-        new_dict["updated_at"] = new_dict["updated_at"].isoformat()
+        new_dict["created_at"] = self.created_at
+        new_dict["updated_at"] = self.updated_at
         new_dict["__class__"] = type(self).__name__
         sort_t = dict(sorted(new_dict.items(), reverse=True))
         return sort_t
