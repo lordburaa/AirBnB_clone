@@ -20,7 +20,7 @@ class BaseModel:
 
     def save(self):
         """save the time"""
-        self.updated_at = datetime.now()
+        self.updated_at = datetime.now().isoformat()
         
     def to_dict(self):
         """to dictionary"""
