@@ -20,12 +20,12 @@ class BaseModel:
 
     def save(self):
         """save the time"""
-        self.updated_at = datetime.now().isoformat()
+        self.updated_at = datetime.now()
         
     def to_dict(self):
         """to dictionary"""
         new_dict = self.__dict__.copy()
-        new_dict["created_at"] = self.created_at
+        new_dict["created_at"] = self.created_at.isoformat()
         new_dict["__class__"] = self.__class__.__name__
         new_dict["updated_at"] = self.updated_at
         sort_t = dict(sorted(new_dict.items(), reverse=True))
