@@ -19,9 +19,7 @@ class BaseModel:
     """base Model class creaed"""
     def __init__(self, *args, **kwargs):
         """instianation"""
-        if not kwargs:
-            if "id" not in kwargs:
-                setattr(self, "id", str(uuid.uuid4()))
+        if kwargs:
             if "created_at" not in self.__dict__:
                 setattr(self, "created_at", datetime.now())
             if "updated_at" not in self.__dict__:
