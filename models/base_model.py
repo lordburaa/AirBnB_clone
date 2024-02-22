@@ -17,7 +17,7 @@ import uuid
 
 class BaseModel:
     """base Model class creaed"""
-    self.id = str(uuid.uuid4())
+    id = str(uuid.uuid4())
     
     def __init__(self):
         """instianation"""
