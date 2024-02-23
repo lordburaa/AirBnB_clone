@@ -14,7 +14,7 @@ class FileStorage:
     def all(self):
         """all method"""
         if os.path.exists(self.__file_path):
-            with open("file.json", "r") as r:
+            with open("file.json", "r", encoding="utf-8") as r:
                 self.__objects = json.load(r)
         return self.__objects
 
