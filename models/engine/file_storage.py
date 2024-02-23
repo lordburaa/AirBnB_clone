@@ -8,9 +8,8 @@ import os
 
 class FileStorage:
     """File Storage class is created"""
-    def __init__(self):
-        self.__file_path = "file.json"
-        self.__objects = {}
+    __file_path = "file.json"
+    __objects = {}
 
     def all(self):
         """all method"""
@@ -28,13 +27,12 @@ class FileStorage:
 
     def save(self):
         """save the file"""
-        try:
+        
+        if os.path.exists(self.__file_path):
             with open("file.json") as r:
                 r = json.load(r)
                 dict_t = {**r, **self.__objects}
                 self.__objects = dict_t
-        except:
-            pass
         with open("file.json", "w", encoding="utf-8") as f:
             json.dump(self.__objects, f)
 
