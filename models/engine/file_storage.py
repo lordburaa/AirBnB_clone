@@ -21,19 +21,19 @@ class FileStorage:
 
     def new(self, obj):
         """new obj"""
-        old = copy.deepcopy(self.__objects)
-        self.__objects ={f"{obj.__class__.__name__}.{obj.id}": str(obj)}
-        self.__objects = copy.deepcopy({**old, **self.__objects})
+        old = self.__objects
+        cp ={f"{obj.__class__.__name__}.{obj.id}": str(obj)}
+        self.__objects = {**old, **cp}
 
     def save(self):
         """save the file"""
         dic = copy.deepcopy(self.__objects)
         if os.path.exists(self.__file_path):
-            with open("file.json") as r:
+            with open(self.__file_path) as r:
                 r = json.load(r)
                 dict_t = {**r, **self.__objects}
-                dic = copy.deepcopy(dict_t)
-        with open("file.json", "w", encoding="utf-8") as f:
+                dic = dict_t
+        with open(self.__file_path, "w", encoding="utf-8") as f:
             json.dump(dic, f)
 
 
