@@ -4,6 +4,7 @@ clss FileStorage
 """
 import json
 import os
+import copy
 
 
 class FileStorage:
@@ -20,13 +21,13 @@ class FileStorage:
 
     def new(self, obj):
         """new obj"""
-        old = self.__objects
+        old = copy.deepcopy(self.__objects)
         self.__objects ={f"{obj.__class__.__name__}.{obj.id}": str(obj)}
         self.__objects = {**old, **self.__objects}
 
     def save(self):
         """save the file"""
-        dic = self.__objects
+        dic = copy.deepcopy(self.__objects)
         if os.path.exists(self.__file_path):
             with open("file.json") as r:
                 r = json.load(r)
