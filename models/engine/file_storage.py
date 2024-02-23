@@ -21,18 +21,17 @@ class FileStorage:
     def new(self, obj):
         """new obj"""
         self.__objects ={f"{obj.__class__.__name__}.{obj.id}": str(obj)}
-        
 
     def save(self):
         """save the file"""
-        
+        dic = self.__objects
         if os.path.exists(self.__file_path):
             with open("file.json") as r:
                 r = json.load(r)
                 dict_t = {**r, **self.__objects}
-                self.__objects = dict_t
+                dic = dict_t
         with open("file.json", "w", encoding="utf-8") as f:
-            json.dump(self.__objects, f)
+            json.dump(dic, f)
 
 
     def reload(self):
