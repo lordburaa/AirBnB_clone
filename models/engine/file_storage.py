@@ -32,7 +32,7 @@ class FileStorage:
             with open("file.json") as r:
                 r = json.load(r)
                 dict_t = {**r, **self.__objects}
-                dic = dict_t
+                dic = copy.deepcopy(dict_t)
         with open("file.json", "w", encoding="utf-8") as f:
             json.dump(dic, f)
 
