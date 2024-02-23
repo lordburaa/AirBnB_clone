@@ -23,7 +23,7 @@ class FileStorage:
     def new(self, obj):
         """new obj"""
         old = self.__objects
-        new ={f"{obj.__class__.__name__}.{obj.id}": str(obj)}
+        new ={f"{obj.__class__.__name__}.{obj.id}": obj.to_dict()}
 
         self.__objects = {**old, **new}
 
