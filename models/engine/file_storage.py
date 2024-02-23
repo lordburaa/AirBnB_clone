@@ -23,7 +23,7 @@ class FileStorage:
         """new obj"""
         old = copy.deepcopy(self.__objects)
         self.__objects ={f"{obj.__class__.__name__}.{obj.id}": str(obj)}
-        self.__objects = {**old, **self.__objects}
+        self.__objects = copy.deepcopy({**old, **self.__objects})
 
     def save(self):
         """save the file"""
