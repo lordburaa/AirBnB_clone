@@ -3,6 +3,8 @@
 clss FileStorage
 """
 import json
+import os
+
 
 class FileStorage:
     """File Storage class is created"""
@@ -42,9 +44,7 @@ class FileStorage:
 
     def reload(self):
         """self"""
-
-        try:
+    
+        if os.path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="utf-8") as r:
                 self.__objects = json.load(r)
-        except:
-            pass
