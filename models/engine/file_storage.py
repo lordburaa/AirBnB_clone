@@ -22,23 +22,24 @@ class FileStorage:
     def new(self, obj):
         """new obj"""
         old = self.__objects
-        cp ={f"{obj.__class__.__name__}.{obj.id}": str(obj)}
-        self.__objects = {**old, **cp}
+        new ={f"{obj.__class__.__name__}.{obj.id}": str(obj)}
+
+        self.__objects = {**old, **new}
 
     def save(self):
         """save the file"""
-        dic = copy.deepcopy(self.__objects)
+        dic = self.__objects
         if os.path.exists(self.__file_path):
             with open(self.__file_path) as r:
                 r = json.load(r)
                 dict_t = {**r, **self.__objects}
-                dic = dict_t
+                dic = copy.deepcopy(dict_t)
         with open(self.__file_path, "w", encoding="utf-8") as f:
             json.dump(dic, f)
 
 
     def reload(self):
-        """self"""
+        """reload object from the file"""
     
         if os.path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="utf-8") as r:
