@@ -13,6 +13,7 @@ Module for the Base Class
 """
 from datetime import datetime
 import uuid
+from . import storage
 
 
 class BaseModel:
@@ -32,6 +33,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
+            storage.new(self)
          
     def __str__(self):
         """str representation"""
@@ -40,6 +42,7 @@ class BaseModel:
     def save(self):
         """save the time"""
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """to dictionary"""
