@@ -20,8 +20,6 @@ class FileStorage:
 
     def new(self, obj):
         """new obj"""
-        """check the condition for obj"""
-        print(type(obj))
         self.__objects ={f"{obj.__class__.__name__}.{obj.id}": str(obj)}
         
 
