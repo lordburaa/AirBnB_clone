@@ -16,6 +16,7 @@ import uuid
 from models import storage
 from .engine.file_storage import FileStorage
 
+
 class BaseModel:
     """base Model class creaed"""
     def __init__(self, *args, **kwargs):
@@ -28,14 +29,14 @@ class BaseModel:
                 setattr(self, "created_at", datetime.now())
             if "updated_at" not in self.__dict__:
                 setattr(self, "updated_at", datetime.now())
-            storage.new(self)
+            # storage.new(self)
         else:
 
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
-            storage.new(self)
-         
+            # storage.new(self)
+
     def __str__(self):
         """str representation"""
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
@@ -43,7 +44,7 @@ class BaseModel:
     def save(self):
         """save the time"""
         self.updated_at = datetime.now()
-        storage.save()
+        # `storage.save()
 
     def to_dict(self):
         """to dictionary"""
