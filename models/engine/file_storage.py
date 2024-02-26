@@ -27,12 +27,13 @@ class FileStorage:
 
     def save(self):
         """save the file"""
-        json_obj = {}
+        json_obj = self.__objects
         try:
 
             with open(self.__file_path, "r") as r:
                 re = json.load(r)
-                json_obj = {**re, **self.__objects}
+                ob_dump = dumps(self.__objects)
+                json_obj = {**re, **ob_dump}
         except:
             pass
         with open(self.__file_path, "w", encoding="utf-8") as f:
