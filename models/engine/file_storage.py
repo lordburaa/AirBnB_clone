@@ -20,23 +20,32 @@ class FileStorage:
 
     def new(self, obj):
         """new obj"""
-        self.obj = obj
-        self.__objects={f"{obj.__class__.__name__}.{obj.id}": str(obj.to_dict())}
+        if obj is not None:
+
+            self.__objects={f"{obj.__class__.__name__}.{obj.id}": obj.to_dict()}
         
 
     def save(self):
         """save the file"""
         json_obj = {}
+        try:
 
-        for key in self.__objects:
-            json_objects[key] = self.__objects[key].to_dict()
+            with open(self.__file_path, "r") as r:
+                re = json.load(r)
+                json_obj = {**re, **self.__objects}
+        except:
+            pass
         with open(self.__file_path, "w", encoding="utf-8") as f:
             json.dump(json_obj, f)
 
 
     def reload(self):
         """reload object from the file"""
-    
-        if os.path.exists(self.__file_path):
+        try:
+
             with open(self.__file_path, "r", encoding="utf-8") as r:
-                self.__objects = json.load(r)
+                jo = json.load(r)
+                self.__objects = jo
+        except:
+            pass
+
