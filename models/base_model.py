@@ -13,8 +13,8 @@ Module for the Base Class
 """
 from datetime import datetime
 import uuid
-from . import storage
-
+from models import storage
+from .engine.file_storage import FileStorage
 
 class BaseModel:
     """base Model class creaed"""
@@ -28,6 +28,7 @@ class BaseModel:
                 setattr(self, "created_at", datetime.now())
             if "updated_at" not in self.__dict__:
                 setattr(self, "updated_at", datetime.now())
+            storage.new(self)
         else:
 
             self.id = str(uuid.uuid4())
