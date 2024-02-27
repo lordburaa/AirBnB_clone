@@ -13,7 +13,7 @@ Module for the Base Class
 """
 from datetime import datetime
 import uuid
-import models
+from models import storage
 # from .engine.file_storage import FileStorage
 
 
@@ -21,6 +21,9 @@ class BaseModel:
     """base Model class creaed"""
     def __init__(self, *args, **kwargs):
         """instianation"""
+       
+        self.id = str(uuid.uuid4())
+        
         if kwargs:
             self.__dict__ = kwargs.copy()
             if "id" not in self.__dict__:
@@ -32,11 +35,11 @@ class BaseModel:
             # storage.new(self)
         else:
 
-            self.id = str(uuid.uuid4())
+            # self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
-            models.storage.new(self)
-            models.storage.save()
+            storage.new(self)
+            # storage.save()
 
     def __str__(self):
         """str representation"""
@@ -45,7 +48,7 @@ class BaseModel:
     def save(self):
         """save the time"""
         self.updated_at = datetime.now()
-        models.storage.save()
+        storage.save()
 
     def to_dict(self):
         """to dictionary"""

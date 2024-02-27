@@ -2,7 +2,6 @@
 """
 unnittest
 """
-import models
 class TestFileStorage(unittest.TestCase):
     """Test File Storag """
 

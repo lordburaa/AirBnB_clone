@@ -16,37 +16,26 @@ class FileStorage:
         """all method"""
         # self.__objects = json.dumps(self.__objects)
         # if os.path.exists(self.__file_path):
-        try:
-            with open(self.__file_path, "r", encoding="utf-8") as r:
-                self.__objects = {**self.__objects, **json.load(r)}
-        except FileNotFoundError as e:
-            pass
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
-        """new obj"""
+        """creating new key if not exist"""
         key = f"{obj.__class__.__name__}.{obj.id}"
 
-        self.__objects[key] = obj.to_dict()
+        FileStorage.__objects[key] = obj.to_dict()
 
     def save(self):
         """save the file"""
-        json_obj = self.__objects.copy()
-        try:
-
-            with open(self.__file_path, "r") as r:
-                re = json.load(r)
-                json_obj = {**re, **json_obj}
-        except FileNotFoundError:
-            pass
+        json_obj = FileStorage.__objects.copy()
         with open(self.__file_path, "w", encoding="utf-8") as f:
-            json.dump(json_obj, f)
+            json.dump({key: value for key, value in FileStorage.__objects.items()}, f)
 
     def reload(self):
         """reload object from the file"""
         try:
 
-            with open(self.__file_path, "r", encoding="utf-8") as r:
-                self.__objects = json.load(r)
+            with open(FileStorage.__file_path, "r", encoding="utf-8") as r:
+                obj_dict = json.load(r)
+                FileStorage.__objects = obj_dict
         except FileNotFoundError:
             pass
