@@ -13,8 +13,8 @@ Module for the Base Class
 """
 from datetime import datetime
 import uuid
-from models import storage
-#from .engine.file_storage import FileStorage
+import models
+# from .engine.file_storage import FileStorage
 
 
 class BaseModel:
@@ -29,13 +29,14 @@ class BaseModel:
                 setattr(self, "created_at", datetime.now())
             if "updated_at" not in self.__dict__:
                 setattr(self, "updated_at", datetime.now())
-            #storage.new(self)
+            # storage.new(self)
         else:
 
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
-            storage.new(self)
+            models.storage.new(self)
+            models.storage.save()
 
     def __str__(self):
         """str representation"""
@@ -44,7 +45,7 @@ class BaseModel:
     def save(self):
         """save the time"""
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """to dictionary"""
