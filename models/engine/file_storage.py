@@ -20,20 +20,19 @@ class FileStorage:
 
     def new(self, obj):
         """new obj"""
-        if obj is not None:
+        key = f"{obj.__class__.__name__}.{obj.id}"
 
-            self.__objects={f"{obj.__class__.__name__}.{obj.id}": obj.to_dict()}
+        self.__objects[key] = obj.to_dict()
         
 
     def save(self):
         """save the file"""
-        json_obj = self.__objects
+        json_obj = self.__objects.copy()
         try:
 
             with open(self.__file_path, "r") as r:
                 re = json.load(r)
-                ob_dump = dumps(self.__objects)
-                json_obj = {**re, **ob_dump}
+                json_obj = {**re, **json_obj}
         except:
             pass
         with open(self.__file_path, "w", encoding="utf-8") as f:
@@ -45,8 +44,7 @@ class FileStorage:
         try:
 
             with open(self.__file_path, "r", encoding="utf-8") as r:
-                jo = json.load(r)
-                self.__objects = jo
+                self.__objects = json.load(r)
         except:
             pass
 
