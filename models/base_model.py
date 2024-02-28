@@ -22,22 +22,18 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """instianation"""
        
-        self.id = str(uuid.uuid4())
-        
         if kwargs:
             self.__dict__ = kwargs.copy()
             if "created_at" not in self.__dict__:
                 setattr(self, "created_at", datetime.now())
             if "updated_at" not in self.__dict__:
                 setattr(self, "updated_at", datetime.now())
-            # storage.new(self)
         else:
 
-            # self.id = str(uuid.uuid4())
+            self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
             storage.new(self)
-            # storage.save()
 
     def __str__(self):
         """str representation"""
