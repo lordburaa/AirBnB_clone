@@ -4,7 +4,7 @@ clss FileStorage
 """
 import json
 import models
-
+import os
 
 class FileStorage:
     """File Storage class is created"""
@@ -35,9 +35,7 @@ class FileStorage:
 
     def reload(self):
         """reload object from the file"""
-        try:
+        if os.path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="utf-8") as r:
             #jo = json.load(r)
                 FileStorage.__objects = json.load(r)
-        except:
-            pass
