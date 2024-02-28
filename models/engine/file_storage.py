@@ -11,8 +11,6 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def __init__(self):
-        pass
 
     def all(self):
         """all method"""
@@ -23,19 +21,21 @@ class FileStorage:
     def new(self, obj):
         """creating new key if not exist"""
         key = f"{obj.__class__.__name__}.{obj.id}"
-        FileStorage.__objects[key]= obj.to_dict()
+        self.__objects[key]= obj
     
     def save(self):
         """save the file"""
-        json_obj = {}
+        obj_dict = {}
+        
         for key in FileStorage.__objects:
-            json_obj[key] = FileStorage.__objects[key]
-        with open(self.__file_path, "w", encoding="utf-8") as f:
-            f.write(json.dumps(json_obj))
+            print("main",self.__objects[key].to_dict())
+            obj_dict[key] = self.__objects[key].to_dict()
+        
+        with open(self.__file_path, 'w', encoding="utf-8") as f:
+            json.dump(obj_dict, f)
 
     def reload(self):
         """reload object from the file"""
-        if os.path.exists(self.__file_path):
-            with open(self.__file_path, "r", encoding="utf-8") as r:
-                jo = json.load(r)
-            FileStorage.__objects = jo
+        if os.path.exists(FileStorage.__file_path):
+            with open(self.__file_path, 'r', encoding="utf-8") as r:
+                self.__objects = json.load(r)
