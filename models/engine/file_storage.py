@@ -30,7 +30,6 @@ class FileStorage:
         json_obj = {}
         for key in self.__objects:
             json_obj[key] = self.__objects[key]
-            print("test")
         with open(self.__file_path, "w", encoding="utf-8") as f:
             f.write(json.dumps(json_obj))
 
@@ -39,6 +38,6 @@ class FileStorage:
         try:
             with open(self.__file_path, "r", encoding="utf-8") as r:
             #jo = json.load(r)
-                self.__objects = json.load(r)
+                FileStorage.__objects = json.load(r)
         except:
             pass
