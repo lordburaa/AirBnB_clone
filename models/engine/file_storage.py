@@ -3,7 +3,6 @@
 clss FileStorage
 """
 import json
-import models
 import os
 
 class FileStorage:
@@ -21,15 +20,15 @@ class FileStorage:
     def new(self, obj):
         """creating new key if not exist"""
         key = f"{obj.__class__.__name__}.{obj.id}"
-        self.__objects[key]= obj
+        self.__objects[key]= obj.to_dict()
     
     def save(self):
         """save the file"""
         obj_dict = {}
         
-        for key in FileStorage.__objects:
-            print("main",self.__objects[key].to_dict())
-            obj_dict[key] = self.__objects[key].to_dict()
+        for key in self.__objects.keys():
+            #print("main",models.base_model.BaseModel(FileStorage.__objects[key]).to_dict())
+            obj_dict[key] = self.__objects[key]
         
         with open(self.__file_path, 'w', encoding="utf-8") as f:
             json.dump(obj_dict, f)
