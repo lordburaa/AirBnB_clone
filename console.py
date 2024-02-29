@@ -5,10 +5,12 @@
 import cmd
 
 
-class cm(cmd.Cmd):
+class HBNBCommand(cmd.Cmd):
     """cmd module"""
+    prompt = "(hbnb) "
+
     def do_quit(self):
-        """quit interuption signal"""
+        """Quit command to exit the program\n"""
         return True
 
     def do_EOF(self, line):
@@ -17,4 +19,4 @@ class cm(cmd.Cmd):
 
 
 if __name__ == "__main__":
-    cm().cmdloop()
+    HBNBCommand().cmdloop()
