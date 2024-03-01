@@ -13,6 +13,10 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program\n"""
         return True
 
+    def emptyline(self):
+        """empty command to loop empty interactive shell"""
+        return False
+
     def do_EOF(self, line):
         """Exis the interactive shell"""
         return True
