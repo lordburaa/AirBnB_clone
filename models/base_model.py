@@ -21,14 +21,22 @@ class BaseModel:
     """base Model class creaed"""
     def __init__(self, *args, **kwargs):
         """instianation"""
-        if kwargs:
-            self.__dict__ = kwargs.copy()
-            #for key, value in kwargs.items():
+        if kwargs is not None and kwargs != {}:
+            for key in kwargs:
+                if key == "created_at":
+                    self.__dict__["created_at"] = datetime.strptime(kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                elif key == "updated_at":
+                    self.__dict__["updated_at"] = datetime.strptime(kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                else:
+                    self.__dict__[key] = kwargs[key]
+
+            # self.__dict__ = kwargs.copy()
+            # for key, value in kwargs.items():
             #    setattr(self, key, value)
-            if "created_at" not in self.__dict__:
-                setattr(self, "created_at", datetime.now())
-            if "updated_at" not in self.__dict__:
-                setattr(self, "updated_at", datetime.now())
+            # if "created_at" not in self.__dict__:
+            #    setattr(self, "created_at", datetime.now())
+            # if "updated_at" not in self.__dict__:
+            #    setattr(self, "updated_at", datetime.now())
         else:
 
             self.id = str(uuid.uuid4())
@@ -38,7 +46,6 @@ class BaseModel:
             #new
             self.updated_at = datetime.now()
             storage.new(self)
-            storage.save()
 
     def __str__(self):
         """str representation"""
@@ -53,7 +60,7 @@ class BaseModel:
         """to dictionary"""
         new_dict = self.__dict__.copy()
         new_dict["__class__"] = type(self).__name__
-        new_dict["created_at"] = self.updated_at.isoformat()
+        new_dict["created_at"] = self.created_at.isoformat()
         new_dict["updated_at"] = self.updated_at.isoformat()
 
         #Include Dynamicaly declared attributes
