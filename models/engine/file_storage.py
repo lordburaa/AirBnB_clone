@@ -15,26 +15,32 @@ class FileStorage:
         """all method"""
         # self.__objects = json.dumps(self.__objects)
         # if os.path.exists(self.__file_path):
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """creating new key if not exist"""
-        key = f"{obj.__class__.__name__}.{obj.id}"
-        self.__objects[key]= obj.to_dict()
+        name = obj.__class__.__name__
+        FileStorage.__objects["{}.{}".format(name, obj.id)] = obj
     
     def save(self):
         """save the file"""
-        obj_dict = {}
-        
-        for key in self.__objects.keys():
-            #print("main",models.base_model.BaseModel(FileStorage.__objects[key]).to_dict())
-            obj_dict[key] = self.__objects[key]
-        
+
         with open(self.__file_path, 'w', encoding="utf-8") as f:
+            obj_dict = {k: v.to_dict() for k, v in FileStorage.__objects.items()}
             json.dump(obj_dict, f)
+
+    def classes(self):
+        
+        from models.base_model import BaseModel
+
+        classes = {"BaseModel": BaseModel}
+
+        return classes
 
     def reload(self):
         """reload object from the file"""
         if os.path.exists(FileStorage.__file_path):
             with open(self.__file_path, 'r', encoding="utf-8") as r:
-                self.__objects = json.load(r)
+                jo = json.load(r)
+                jo = {k: self.classes()[v["__class__"]](**v) for k, v in jo.items()}
+                FileStorage.__objects = jo
