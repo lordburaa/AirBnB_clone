@@ -2,6 +2,8 @@
 """
     console
 """
+import json
+import copy
 import cmd
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
@@ -37,7 +39,8 @@ class HBNBCommand(cmd.Cmd):
             if check_dic not in show_id:
                 print("** no instance found **")
             else:
-                print(show_id)
+                #showing the instance value
+                print(show_id[check_dic])
 
 
     def do_destroy(self, line):
@@ -65,14 +68,19 @@ class HBNBCommand(cmd.Cmd):
         """Print all string representaiton of all instnaces based or not on the class name"""
         all_dict = storage.all()
         list_t = line.split()
-        
+        #using the for loop
+    
+        li = [] 
         if len(list_t) >= 1:
             if list_t[0] != "BaseModel":
                 print("** class doesn't exist **")
             else:
-                print(BaseModel())
+                for key, value in all_dict.items():
+                    li.append(str(value))
+                print(li)
         else:
-            print(all_dict)
+            pass
+
 
     def do_update(self, line):
         """Update an instance based on the class name and id by adding or updating attribute"""
@@ -93,6 +101,23 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name is missing **")
         elif len(list_t) < 4:
             print("** value missing **")
+        elif len(list_t) == 4:
+            dic = {}
+
+
+            dict_copy = dic_obj.copy()
+
+            
+            for dic_t, value in dict_copy.items():
+                base_str, id_str = dic_t.split(".")
+                if id_str == list_t[1]:
+                    #dic may conatin the memory addres
+                    
+                    setattr(value, list_t[2], list_t[3])
+                    # obj.save()
+                    # print(obj)
+                    break
+                    
         else:
             print("ALL ARGUMET IS NOT USED")
 
