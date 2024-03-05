@@ -55,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
         elif list_t[0] != "BaseModel":
             print("** class doesn't exist **")
         elif len(list_t) < 2:
-            print("** instnace id missing **")
+            print("** instance id missing **")
         else:
             del_id = "BaseModel." + list_t[1]
             
