@@ -128,7 +128,6 @@ class HBNBCommand(cmd.Cmd):
                     break
                     
         else:
-            #print("ALL ARGUMET IS NOT USED")
             pass
 
 
