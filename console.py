@@ -91,6 +91,11 @@ class HBNBCommand(cmd.Cmd):
         """Update an instance based on the class name and id by adding or updating attribute"""
         list_t = line.split()
         dic_obj = storage.all()
+
+        if len(list_t) >= 2:
+
+            check_id = "BaseModel."+ str(list_t[1])
+        
         if len(list_t) < 1:
             print("** class name missing **")
         elif list_t[0] != "BaseModel":
@@ -110,7 +115,6 @@ class HBNBCommand(cmd.Cmd):
             dic = {}
 
             dict_copy = dic_obj.copy()
-            check_id = "BaseModel."+ str(list_t[1])
 
             
             for dic_t, value in dict_copy.items():
