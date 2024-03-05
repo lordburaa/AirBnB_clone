@@ -15,7 +15,7 @@ class HBNBCommand(cmd.Cmd):
     
     def do_create(self, line):
         """command to create new instnace of BaseMode save to the FILE and print id"""
-        if line == '':
+        if len(line) == 0:
             print("** class name missing **")
         elif line != "BaseModel":
             print("** class doesn't exist **")
@@ -92,6 +92,7 @@ class HBNBCommand(cmd.Cmd):
         if len(list_t) < 1:
             print("** class name missing **")
         elif list_t[0] != "BaseModel":
+            # checkign from the dictionary 
             print("** class doesn't exist **")
         elif len(list_t) < 2:
             print("** instance id missing **")
