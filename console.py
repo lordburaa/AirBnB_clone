@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             check_dic ="BaseModel."+ str(list_t[1])
-            print(check_dic)
+            # print(check_dic)
             if check_dic not in show_id:
                 print("** no instance found **")
             else:
@@ -46,8 +46,10 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, line):
         """destroy command"""
 
-        del_id = storage.all()
+        dic_t = storage.all()
         list_t = line.split()
+        
+        del_id = "BaseModel." + list_t[1]
         
         if len(list_t) < 1:
             print("** class name is missing **")
@@ -56,13 +58,13 @@ class HBNBCommand(cmd.Cmd):
         elif len(list_t) < 2:
             print("** instnace id missing **")
         else:
-            if list_t[1] not in del_id:
+            if del_id not in dic_t:
                 print("** no instance found **")
             else:
                 #del
-                del_id.clear()
+                del dic_t[del_id]
                 #save the ins
-                del_id.save()
+                # .save()
 
     def do_all(self, line):
         """Print all string representaiton of all instnaces based or not on the class name"""
