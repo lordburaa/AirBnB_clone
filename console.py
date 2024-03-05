@@ -49,7 +49,6 @@ class HBNBCommand(cmd.Cmd):
         dic_t = storage.all()
         list_t = line.split()
         
-        del_id = "BaseModel." + list_t[1]
         
         if len(list_t) < 1:
             print("** class name is missing **")
@@ -58,6 +57,8 @@ class HBNBCommand(cmd.Cmd):
         elif len(list_t) < 2:
             print("** instnace id missing **")
         else:
+            del_id = "BaseModel." + list_t[1]
+            
             if del_id not in dic_t:
                 print("** no instance found **")
             else:
