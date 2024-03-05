@@ -73,12 +73,14 @@ class HBNBCommand(cmd.Cmd):
         list_t = line.split()
         #using the for loop
     
-        li = []
-        if not list_t:
-                print("** class doesn't exist **")
+        if len(list_t) == 0:
+                li = []
+                for key, value in all_dict.items():
+                    li.append(str(value))
+                print(li)
         else:
             if list_t[0] == "BaseModel":
-
+                li = []
                 for key, value in all_dict.items():
                     li.append(str(value))
                 print(li)
