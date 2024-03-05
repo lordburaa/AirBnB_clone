@@ -73,17 +73,17 @@ class HBNBCommand(cmd.Cmd):
         list_t = line.split()
         #using the for loop
     
-        li = [] 
-        if len(list_t) >= 1:
-            if list_t[0] != "BaseModel":
+        li = []
+        if not list_t:
                 print("** class doesn't exist **")
-            else:
+        else:
+            if list_t[0] == "BaseModel":
+
                 for key, value in all_dict.items():
                     li.append(str(value))
                 print(li)
-        else:
-            pass
-
+            else:
+                print("** class doesn't exist **")
 
     def do_update(self, line):
         """Update an instance based on the class name and id by adding or updating attribute"""
