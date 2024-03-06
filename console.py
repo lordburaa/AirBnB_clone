@@ -125,7 +125,7 @@ class HBNBCommand(cmd.Cmd):
                     setattr(value, list_t[2], list_t[3])
                     # obj.save()
                     # print(obj)
-                    break
+                    # break
                     
         else:
             pass
