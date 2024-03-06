@@ -123,17 +123,30 @@ class HBNBCommand(cmd.Cmd):
         elif len(list_t) == 4:
 
             dict_copy = dic_obj.copy()
-
-            
+            tmp = ""
+            sv = {} 
             for dic_t, value in dict_copy.items():
                 base_str, id_str = dic_t.split(".")
+                tmp = dic_t
                 if id_str == list_t[1]:
                     #dic may conatin the memory addres
-                    
-                    setattr(value, str(list_t[2]), str(list_t[3]))
-                    # obj.save()
                     # print(obj)
                     # break
+                    
+                   
+                   
+                    setattr(value, list_t[2], str(list_t[3]))
+                    
+                    print(dic_obj[dic_t])
+
+                
+                else:
+                    pass
+            print("out size the loop ")
+            print(dic_obj[tmp].to_dict())
+            exit()
+            with open("file.json", "w") as w:
+                json.dump(sv, w)
                     
         else:
             pass
