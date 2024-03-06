@@ -27,6 +27,7 @@ class HBNBCommand(cmd.Cmd):
             print(obj.id)
     
     def do_show(self, line):
+        """show Method"""
         show_id = storage.all()
         list_t = line.split()
         if len(list_t) < 1:
