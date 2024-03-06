@@ -60,14 +60,16 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             del_id = "BaseModel." + list_t[1]
-            
             if del_id not in dic_t:
                 print("** no instance found **")
             else:
-                #del
-                del dic_t[del_id]
+                dic = dic_t.copy()
+                del dic[del_id]
+                with open("file.json", "w") as w:
+                    json.dump(dic, w)
+
                 #save the ins
-                # .save()
+
 
     def do_all(self, line):
         """Print all string representaiton of all instnaces based or not on the class name"""
