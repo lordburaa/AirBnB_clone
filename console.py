@@ -19,7 +19,7 @@ class HBNBCommand(cmd.Cmd):
 
         if len(list_t) == 0:
             print("** class name missing **")
-        elif list_t[1] != "BaseModel":
+        elif list_t[0] != "BaseModel":
             print("** class doesn't exist **")
         else:
             obj = BaseModel()
