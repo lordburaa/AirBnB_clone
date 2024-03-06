@@ -15,9 +15,11 @@ class HBNBCommand(cmd.Cmd):
     
     def do_create(self, line):
         """command to create new instnace of BaseMode save to the FILE and print id"""
-        if len(line) == 0:
+        list_t = line.split()
+
+        if len(list_t) == 0:
             print("** class name missing **")
-        elif line != "BaseModel":
+        elif list_t[1] != "BaseModel":
             print("** class doesn't exist **")
         else:
             obj = BaseModel()
