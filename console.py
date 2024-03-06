@@ -112,7 +112,6 @@ class HBNBCommand(cmd.Cmd):
         elif len(list_t) < 4:
             print("** value missing **")
         elif len(list_t) == 4:
-            dic = {}
 
             dict_copy = dic_obj.copy()
 
