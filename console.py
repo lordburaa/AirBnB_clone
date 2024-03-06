@@ -121,7 +121,7 @@ class HBNBCommand(cmd.Cmd):
                 if id_str == list_t[1]:
                     #dic may conatin the memory addres
                     
-                    setattr(value, list_t[2], list_t[3])
+                    setattr(value, list_t[2], str(list_t[3]))
                     # obj.save()
                     # print(obj)
                     # break
