@@ -82,7 +82,6 @@ class HBNBCommand(cmd.Cmd):
         all_dict = storage.all()
         list_t = line.split()
         #using the for loop
-        print("checking")
         #print(all_dict)
         dic_t = all_dict.copy()
         if len(list_t) == 0:
