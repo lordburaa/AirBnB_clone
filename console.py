@@ -144,14 +144,9 @@ class HBNBCommand(cmd.Cmd):
                     
                 else:
                     sv[dic_t] = value.to_dict()
-            
-
-            try:
-                with open("file.json", "w") as w:
-                    json.dump(sv, w)
-            except Exception as e:
-                print(e)
-            # print("out size the loop ")
+            for key, value in sv.items():
+                new = BaseModel(value)
+                new.save()
             #print(dic_obj[tmp].to_dict())
             # instantiate new class for the new class
             
