@@ -132,9 +132,11 @@ class HBNBCommand(cmd.Cmd):
                 if id_str == list_t[1]:
                    
                     st_r = str(list_t[3])
-                    
-                    new = str(list_t[3].strip('"'))
+                    if '"' in list_t[3]:
 
+                        new = str(list_t[3].strip('"'))
+                    else:
+                        new = str(list_[3])
                     setattr(value, list_t[2], new)
                     value.save() 
 
