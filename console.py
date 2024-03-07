@@ -102,7 +102,8 @@ class HBNBCommand(cmd.Cmd):
             if list_t[0] == "BaseModel":
                 li = []
                 for key, value in all_dict.items():
-                    li.append(str(value))
+                    obj = str(BaseModel(**value))
+                    li.append(obj)
                 if len(li) != 0:
 
                     print(li)
