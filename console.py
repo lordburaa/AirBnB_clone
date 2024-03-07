@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, line):
         """destroy command"""
 
-        #dic_t = storage.all()
+        dic_t = storage.all()
         list_t = line.split()
         rd = {}
         
@@ -72,10 +72,23 @@ class HBNBCommand(cmd.Cmd):
                 #dic = dic_t.copy()
                 with open("file.json", "r") as r:
                     rd = json.load(r)
-                
-                del rd[del_id]
+                tmp_dict = {}
+                dcopy = dic_t.copy()
+                del dcopy[del_id]
+
+                #print(dcopy)
+                #exit()
+                save_dict = {}
+                for key, value in dcopy.items():
+                    obj = BaseModel(dcopy[key])
+                    to_di = obj.to_dict()
+                    save_dict[key] = to_di
                 with open("file.json", "w") as w:
-                    json.dump(rd, w)
+                    json.dump(save_dict, w)
+
+
+                #with open("file.json", "w") as w:
+                #    json.dump(rd, w)
 
                 #save the ins
 
@@ -83,6 +96,10 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """Print all string representaiton of all instnaces based or not on the class name"""
         all_dict = storage.all()
+        if os.path.exists("file.json"):
+
+            with open("file.json", "r") as w:
+                all_dict = json.load(w)
         list_t = line.split()
         #using the for loop
         
@@ -91,8 +108,9 @@ class HBNBCommand(cmd.Cmd):
         if len(list_t) == 0:
                 li = []
                 for key, value in all_dict.items():
-                    
-                    li.append(str(all_dict[key]))
+                    obj = str(BaseModel(**value))
+                         
+                    li.append(obj)
                 if len(li) != 0:
 
                     print(li)
