@@ -50,9 +50,9 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, line):
         """destroy command"""
 
-        dic_t = storage.all()
+        #dic_t = storage.all()
         list_t = line.split()
-        
+        rd = {}
         
         if len(list_t) < 1:
             print("** class name is missing **")
@@ -61,14 +61,21 @@ class HBNBCommand(cmd.Cmd):
         elif len(list_t) < 2:
             print("** instance id missing **")
         else:
-            del_id = "BaseModel." + list_t[1]
-            if del_id not in dic_t:
+            del_id = "BaseModel." + str(list_t[1])
+            dic_test = ""
+            with open("file.json", "r") as r:
+                dic_test = json.load(r)
+
+            if del_id not in dic_test:
                 print("** no instance found **")
             else:
-                dic = dic_t.copy()
-                del dic[del_id]
+                #dic = dic_t.copy()
+                with open("file.json", "r") as r:
+                    rd = json.load(r)
+                
+                del rd[del_id]
                 with open("file.json", "w") as w:
-                    json.dump(dic, w)
+                    json.dump(rd, w)
 
                 #save the ins
 
