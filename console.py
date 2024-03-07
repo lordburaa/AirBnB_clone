@@ -124,27 +124,39 @@ class HBNBCommand(cmd.Cmd):
 
             dict_copy = dic_obj.copy()
             tmp = ""
-            sv = {} 
+            sv = {}
+            file_save = {}
             for dic_t, value in dict_copy.items():
                 base_str, id_str = dic_t.split(".")
                 tmp = dic_t
                 if id_str == list_t[1]:
-                    #dic may conatin the memory addres
-                    # print(obj)
-                    # break
-                    
                    
-                   
-                    setattr(value, list_t[2], str(list_t[3]))
+                    st_r = str(list_t[3])
                     
-                    print(dic_obj[dic_t])
+                    new = str(list_t[3].strip('"'))
 
-                
+                    setattr(value, list_t[2], new)
+                    
+
+                    t = dic_obj[dic_t]
+                    sv[dic_t] = t.to_dict()
+
+                    
                 else:
-                    pass
-            print("out size the loop ")
-            print(dic_obj[tmp].to_dict())
-            exit()
+                    sv[dic_t] = value.to_dict()
+            
+
+            try:
+                with open("file.json", "w") as w:
+                    json.dump(sv, w)
+            except Exception as e:
+                print(e)
+            # print("out size the loop ")
+            #print(dic_obj[tmp].to_dict())
+            # instantiate new class for the new class
+            
+            
+
             with open("file.json", "w") as w:
                 json.dump(sv, w)
                     
