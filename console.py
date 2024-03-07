@@ -80,10 +80,6 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """Print all string representaiton of all instnaces based or not on the class name"""
         all_dict = storage.all()
-        if os.path.exists("file.json"):
-
-            with open("file.json", "r") as w:
-                all_dict = json.load(w)
         list_t = line.split()
         #using the for loop
         
