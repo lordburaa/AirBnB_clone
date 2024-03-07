@@ -5,6 +5,7 @@
 import json
 import copy
 import cmd
+import os
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models import storage
@@ -138,7 +139,7 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         new = str(list_[3])
                     setattr(value, list_t[2], new)
-                    value.save() 
+                    #value.save() 
 
                     t = dic_obj[dic_t]
                     sv[dic_t] = t.to_dict()
@@ -146,10 +147,16 @@ class HBNBCommand(cmd.Cmd):
                     
                 else:
                     sv[dic_t] = value.to_dict()
-                    value.save()
-            for key, value in sv.items():
-                new = BaseModel(value)
-                new.save()
+
+            if os.path.exists("file.json"):
+                os.remove("file.json")
+            else:
+                pass
+            with open("file.json", "w") as w:
+                json.dump(sv, w)
+            # for key, value in sv.items():
+            #    new = BaseModel(value)
+            #    new.save()
             #print(dic_obj[tmp].to_dict())
             # instantiate new class for the new class
             
