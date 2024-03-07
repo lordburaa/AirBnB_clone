@@ -53,6 +53,7 @@ class HBNBCommand(cmd.Cmd):
         dic_t = storage.all()
         list_t = line.split()
         rd = {}
+
         
         if len(list_t) < 1:
             print("** class name is missing **")
@@ -69,27 +70,10 @@ class HBNBCommand(cmd.Cmd):
             if del_id not in dic_test:
                 print("** no instance found **")
             else:
+
+                del storage.all()[del_id]
+                storage.save()
                 #dic = dic_t.copy()
-                with open("file.json", "r") as r:
-                    rd = json.load(r)
-                tmp_dict = {}
-                dcopy = dic_t.copy()
-                del dcopy[del_id]
-
-                #print(dcopy)
-                #exit()
-                save_dict = {}
-                for key, value in dcopy.items():
-                    obj = BaseModel(dcopy[key])
-                    to_di = obj.to_dict()
-                    save_dict[key] = to_di
-                with open("file.json", "w") as w:
-                    json.dump(save_dict, w)
-
-
-                #with open("file.json", "w") as w:
-                #    json.dump(rd, w)
-
                 #save the ins
 
 
@@ -167,7 +151,8 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         new = str(list_t[3])
                     setattr(value, list_t[2], new)
-                    value.save() 
+                    print("******** value of id ", value.id)
+                    storage.save() 
 
                     # t = dic_obj[dic_t]
                     # sv[dic_t] = t.to_dict()
