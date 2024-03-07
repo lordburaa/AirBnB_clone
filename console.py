@@ -146,28 +146,9 @@ class HBNBCommand(cmd.Cmd):
                     setattr(value, list_t[2], new)
                     storage.new(value) 
                     storage.save()
-                    # t = dic_obj[dic_t]
-                    # sv[dic_t] = t.to_dict()
-
                     
                 else:
                     pass
-                    # sv[dic_t] = value.to_dict()
-
-            # if os.path.exists("file.json"):
-            #    os.remove("file.json")
-            # else:
-            #    pass
-           # with open("file.json", "w") as w:
-            #    json.dump(sv, w)
-            # for key, value in sv.items():
-            #    new = BaseModel value)
-            #    new.save()
-            #print(dic_obj[tmp].to_dict())
-            # instantiate new class for the new class
-            
-            
-
                     
         else:
             pass
