@@ -139,7 +139,7 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         new = str(list_[3])
                     setattr(value, list_t[2], new)
-                    #value.save() 
+                    value.save() 
 
                     t = dic_obj[dic_t]
                     sv[dic_t] = t.to_dict()
