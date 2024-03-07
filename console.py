@@ -157,8 +157,6 @@ class HBNBCommand(cmd.Cmd):
             
             
 
-            with open("file.json", "w") as w:
-                json.dump(sv, w)
                     
         else:
             pass
