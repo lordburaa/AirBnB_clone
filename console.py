@@ -137,7 +137,7 @@ class HBNBCommand(cmd.Cmd):
 
                         new = list_t[3][1:-1]
                     else:
-                        new = str(list_[3])
+                        new = str(list_t[3])
                     setattr(value, list_t[2], new)
                     value.save() 
 
