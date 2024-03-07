@@ -85,11 +85,14 @@ class HBNBCommand(cmd.Cmd):
         all_dict = storage.all()
         list_t = line.split()
         #using the for loop
-    
+        
+
+
         if len(list_t) == 0:
                 li = []
                 for key, value in all_dict.items():
-                    li.append(str(value))
+                    
+                    li.append(str(all_dict[key]))
                 if len(li) != 0:
 
                     print(li)
@@ -146,23 +149,24 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         new = str(list_t[3])
                     setattr(value, list_t[2], new)
-                    value.save() 
+                    #value.save() 
 
-                    t = dic_obj[dic_t]
-                    sv[dic_t] = t.to_dict()
+                    # t = dic_obj[dic_t]
+                    # sv[dic_t] = t.to_dict()
 
                     
                 else:
-                    sv[dic_t] = value.to_dict()
+                    pass
+                    # sv[dic_t] = value.to_dict()
 
-            if os.path.exists("file.json"):
-                os.remove("file.json")
-            else:
-                pass
-            with open("file.json", "w") as w:
-                json.dump(sv, w)
+            # if os.path.exists("file.json"):
+            #    os.remove("file.json")
+            # else:
+            #    pass
+           # with open("file.json", "w") as w:
+            #    json.dump(sv, w)
             # for key, value in sv.items():
-            #    new = BaseModel(value)
+            #    new = BaseModel value)
             #    new.save()
             #print(dic_obj[tmp].to_dict())
             # instantiate new class for the new class
