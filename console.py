@@ -144,6 +144,7 @@ class HBNBCommand(cmd.Cmd):
                     
                 else:
                     sv[dic_t] = value.to_dict()
+                    value.save()
             for key, value in sv.items():
                 new = BaseModel(value)
                 new.save()
