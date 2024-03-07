@@ -136,7 +136,7 @@ class HBNBCommand(cmd.Cmd):
                     new = str(list_t[3].strip('"'))
 
                     setattr(value, list_t[2], new)
-                    
+                    value.save() 
 
                     t = dic_obj[dic_t]
                     sv[dic_t] = t.to_dict()
