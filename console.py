@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             else:
 
-                del storage.all()[del_id]
+                del dict_t[del_id]
                 storage.save()
                 storage.reload()
                 #dic = dic_t.copy()
