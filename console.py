@@ -105,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
                     print("]")
                 
                 else:
-                    print("[]")
+                    print("[\"{}\"]")
 
         else:
             if list_t[0] == "BaseModel":
@@ -129,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
                         
                     print("]")
                 else:
-                    print("[]")
+                    print("[\"{}\"]")
 
             else:
                 print("** class doesn't exist **")
