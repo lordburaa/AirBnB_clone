@@ -15,12 +15,12 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """cmd module"""
     prompt = "(hbnb) "
-    clss = ["BaseModel", "User", "Amenity"]
+    clss = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
 
     def do_create(self, line):
         """command to create new instnace of BaseMode save to the FILE and print id"""
         list_t = line.split()
-        dic_t = {"BaseModel": BaseModel(), "User": User(), "Amenity": Amenity()}
+        dic_t = {"BaseModel": BaseModel(), "User": User(), "State": State(), "City": City(), "Amenity": Amenity(), "Place": Place(), "Review": Review()}
 
         if len(list_t) == 0:
             print("** class name missing **")
