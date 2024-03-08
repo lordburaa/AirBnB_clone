@@ -78,9 +78,7 @@ class HBNBCommand(cmd.Cmd):
         storage.reload()
         all_dict = storage.all()
         list_t = line.split()
-        #using the for loop
-        #print(all_dict)
-        dic_t = all_dict.copy()
+        
         if len(list_t) == 0:
                 li = []
                 for key, value in all_dict.items():
@@ -101,14 +99,13 @@ class HBNBCommand(cmd.Cmd):
                         
                     print("]")
                 
-                else:
-                    print("[\"{}\"]")
 
         else:
             if list_t[0] == "BaseModel":
                 li = []
                 
                 for key, value in all_dict.items():
+                    
                     li.append(str(all_dict[key]))
                 
                 if len(li) != 0:
@@ -125,8 +122,6 @@ class HBNBCommand(cmd.Cmd):
                         l = l + 1
                         
                     print("]")
-                else:
-                    print("[\"{}\"]")
 
             else:
                 print("** class doesn't exist **")
