@@ -16,6 +16,6 @@ class Place(BaseModel):
     number_bathrooms = 4
     max_guest = 4
     price_by_night = 3
-    latitude = 4
+    latitude = 0.0
     longitude = 4.0
     amenity_ids = []
