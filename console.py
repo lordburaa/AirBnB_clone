@@ -80,6 +80,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         """Print all string representaiton of all instnaces based or not on the class name"""
+        storage.reload()
         all_dict = storage.all()
         list_t = line.split()
         #using the for loop
