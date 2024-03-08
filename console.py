@@ -74,6 +74,7 @@ class HBNBCommand(cmd.Cmd):
 
                 del storage.all()[del_id]
                 storage.save()
+                storage.reload()
                 #dic = dic_t.copy()
                 #save the ins
 
