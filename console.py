@@ -53,7 +53,6 @@ class HBNBCommand(cmd.Cmd):
         storage.reload()
         dic_t = storage.all()
         list_t = line.split()
-        rd = {}
 
         
         if len(list_t) < 1:
