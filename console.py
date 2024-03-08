@@ -179,7 +179,7 @@ class HBNBCommand(cmd.Cmd):
                     setattr(value, list_t[2], new)
                     storage.new(value) 
                     storage.save()
-                    
+                    storage.reload() 
                 else:
                     pass
                     
