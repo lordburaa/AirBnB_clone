@@ -40,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(list_t) == 1:
             print("** instance id missing **")
         else:
-            check_dic = 'BaseModel.'+ str(list_t[1])
+            check_dic = str(list_t[0]) + "." + str(list_t[1])
             # print(check_dic)
             if check_dic not in show_id:
                 print("** no instance found **")
