@@ -21,7 +21,7 @@ class HBNBCommand(cmd.Cmd):
         dic_t = {"BaseModel": BaseModel, "User": user}
         if len(list_t) == 0:
             print("** class name missing **")
-        elif list_t[0] not in clss:
+        elif list_t[0] not in self.clss:
             print("** class doesn't exist **")
         else:
             obj = dic_t[list_t[0]]
@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
         list_t = line.split()
         if len(list_t) < 1:
             print("** class name missing **")
-        elif list_t[0] != "BaseModel":
+        elif list_t[0] not in self.clss:
             print("** class doesn't exist **")
         elif len(list_t) == 1:
             print("** instance id missing **")
@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
 
         if len(list_t) == 0:
             print("** class name missing **")
-        elif list_t[0] != "BaseModel":
+        elif list_t[0] not in self.clss:
             print("** class doesn't exist **")
         elif len(list_t) == 1:
             print("** instance id missing **")
@@ -103,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
                 
 
         else:
-            if list_t[0] in clss:
+            if list_t[0] in self.clss:
                 li = []
                 
                 for key, value in all_dict.items():
@@ -136,11 +136,11 @@ class HBNBCommand(cmd.Cmd):
 
         if len(list_t) >= 2:
             
-            check_id = str(list_t[0]) "." + str(list_t[1])
+            check_id = str(list_t[0]) + "." + str(list_t[1])
         
         if len(list_t) == 0:
             print("** class name missing **")
-        elif list_t[0] not in clss:
+        elif list_t[0] not in self.clss:
             print("** class doesn't exist **")
         elif len(list_t) == 1:
             print("** instance id missing **")
