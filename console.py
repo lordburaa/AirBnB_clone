@@ -29,10 +29,11 @@ class HBNBCommand(cmd.Cmd):
     
     def do_show(self, line):
         """show Method"""
+        storage.reload()
         show_id = storage.all()
         list_t = line.split()
         if len(list_t) < 1:
-            print("** class name is missingg **")
+            print("** class name missing **")
         elif list_t[0] != "BaseModel":
             print("** class doesn't exist **")
         elif len(list_t) == 1:
