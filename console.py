@@ -138,6 +138,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """Update an instance based on the class name and id by adding or updating attribute"""
+        storage.reload()
         list_t = line.split()
         dic_obj = storage.all()
 
