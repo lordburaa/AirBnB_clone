@@ -55,18 +55,16 @@ class HBNBCommand(cmd.Cmd):
 
         
         if len(list_t) < 1:
-            print("** class name is missing **")
+            print("** class name missing **")
         elif list_t[0] != "BaseModel":
             print("** class doesn't exist **")
-        elif len(list_t) < 2:
+        elif len(list_t) == 1:
             print("** instance id missing **")
         else:
             del_id = "BaseModel." + str(list_t[1])
             dic_test = ""
-            with open("file.json", "r") as r:
-                dic_test = json.load(r)
 
-            if del_id not in dic_test:
+            if del_id not in dic_t:
                 print("** no instance found **")
             else:
 
