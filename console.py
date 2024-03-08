@@ -136,20 +136,19 @@ class HBNBCommand(cmd.Cmd):
 
             check_id = "BaseModel."+ str(list_t[1])
         
-        if len(list_t) < 1:
+        if len(list_t) == 0:
             print("** class name missing **")
         elif list_t[0] != "BaseModel":
-            # checkign from the dictionary 
             print("** class doesn't exist **")
-        elif len(list_t) < 2:
+        elif len(list_t) == 1:
             print("** instance id missing **")
         elif check_id not in dic_obj:
             #checking wheter id instnace is exist
             print("** no instance found **")
 
-        elif len(list_t) < 3:
-            print("** attribute name is missing **")
-        elif len(list_t) < 4:
+        elif len(list_t) == 2:
+            print("** attribute name missing **")
+        elif len(list_t) == 3:
             print("** value missing **")
         elif len(list_t) == 4:
 
@@ -157,16 +156,18 @@ class HBNBCommand(cmd.Cmd):
             tmp = ""
             for dic_t, value in dict_copy.items():
                 base_str, id_str = dic_t.split(".")
-                tmp = dic_t
+                
                 if id_str == list_t[1]:
-                    new = ""       
+                    """new = ""       
                     st_r = str(list_t[3])
+                    
                     if list_t[3].startswith('"') and list_t[3].endswith('"'):
 
                         new = list_t[3][1:-1]
                     else:
-                        new = str(list_t[3])
-                    setattr(value, list_t[2], new)
+                        new = str(list_t[3])"""
+
+                    setattr(value, list_t[2], list_t[3])
                     storage.new(value) 
                     storage.save()
                     storage.reload() 
