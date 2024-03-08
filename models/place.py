@@ -12,10 +12,10 @@ class Place(BaseModel):
     name = ""
     description = ""
     # type int
-    number_rooms = 3
-    number_bathrooms = 4
-    max_guest = 4
-    price_by_night = 3
+    number_rooms = 0
+    number_bathrooms = 0
+    max_guest = 0
+    price_by_night = 0
     latitude = 0.0
-    longitude = 4.0
+    longitude = 0.0
     amenity_ids = []
