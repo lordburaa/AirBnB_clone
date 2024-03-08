@@ -54,9 +54,6 @@ class HBNBCommand(cmd.Cmd):
         dic_t = storage.all()
         list_t = line.split()
 
-        print(dic_t)
-        print("succes")
-        exit()
 
         if len(list_t) == 0:
             print("** class name missing **")
@@ -86,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
         dic_t = all_dict.copy()
         if len(list_t) == 0:
                 li = []
-                for key, value in dic_t.items():
+                for key, value in all_dict.items():
                     li.append(str(all_dict[key]))
                 
                 if len(li) != 0:
