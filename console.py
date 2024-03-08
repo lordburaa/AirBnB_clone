@@ -32,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
         show_id = storage.all()
         list_t = line.split()
         if len(list_t) < 1:
-            print("** class name is missing **")
+            print("** class name is missingg **")
         elif list_t[0] != "BaseModel":
             print("** class doesn't exist **")
         elif len(list_t) == 1:
