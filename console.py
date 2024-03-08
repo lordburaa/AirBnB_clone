@@ -91,16 +91,35 @@ class HBNBCommand(cmd.Cmd):
                          
                     li.append(str(all_dict[key]))
                 if len(li) != 0:
-
-                    print(li)
+                    print("[",end="")
+                    l = 0
+                    for item in li:
+                        print("\"", end="")
+                        print(item, end="")
+                        print("\"", end="")
+                        if l != len(li) - 1:
+                            print(", ", end="")
+                        l = l + 1
+                        
+                    print("]")
         else:
             if list_t[0] == "BaseModel":
                 li = []
                 for key, value in all_dict.items():
                     li.append(str(all_dict[key]))
                 if len(li) != 0:
+                    l = 0
+                    print("[", end="")
+                    for item in li:
+                        print("\"", end="")
+                        print(item, end="")
+                        print("\"", end="")
+                        if l != len(li) - 1:
+                            print(", ", end="")
+                        l = l + 1
+                        
+                    print("]")
 
-                    print(li)
             else:
                 print("** class doesn't exist **")
 
