@@ -8,18 +8,20 @@ import cmd
 import os
 from models.base_model import BaseModel
 from models.user import User
+from models.amenity import Amenity
 from models.engine.file_storage import FileStorage
 from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """cmd module"""
     prompt = "(hbnb) "
-    clss = ["BaseModel", "User"]
+    clss = ["BaseModel", "User", "Amenity"]
 
     def do_create(self, line):
         """command to create new instnace of BaseMode save to the FILE and print id"""
         list_t = line.split()
-        dic_t = {"BaseModel": BaseModel(), "User": User()}
+        dic_t = {"BaseModel": BaseModel(), "User": User(), "Amenity": Amenity()}
+
         if len(list_t) == 0:
             print("** class name missing **")
         elif list_t[0] not in self.clss:
