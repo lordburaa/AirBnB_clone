@@ -13,7 +13,8 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """cmd module"""
     prompt = "(hbnb) "
-    
+    clss = ["BaseModel", "User"]
+
     def do_create(self, line):
         """command to create new instnace of BaseMode save to the FILE and print id"""
         list_t = line.split()
@@ -62,7 +63,8 @@ class HBNBCommand(cmd.Cmd):
         elif len(list_t) == 1:
             print("** instance id missing **")
         else:
-            del_id = "BaseModel." + str(list_t[1])
+
+            del_id = str(list_t[0]) + "." + str(list_t[1])
 
             if del_id not in dic_t:
                 print("** no instance found **")
@@ -101,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
                 
 
         else:
-            if list_t[0] == "BaseModel":
+            if list_t[0] in clss:
                 li = []
                 
                 for key, value in all_dict.items():
@@ -133,12 +135,12 @@ class HBNBCommand(cmd.Cmd):
         dic_obj = storage.all()
 
         if len(list_t) >= 2:
-
-            check_id = "BaseModel."+ str(list_t[1])
+            
+            check_id = str(list_t[0]) "." + str(list_t[1])
         
         if len(list_t) == 0:
             print("** class name missing **")
-        elif list_t[0] != "BaseModel":
+        elif list_t[0] not in clss:
             print("** class doesn't exist **")
         elif len(list_t) == 1:
             print("** instance id missing **")
