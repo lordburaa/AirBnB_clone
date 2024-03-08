@@ -9,3 +9,6 @@ class Amenity(BaseModel):
     """class amenity created"""
 
     name = ""
+
+    def __init__(self):
+        super().__init__()
