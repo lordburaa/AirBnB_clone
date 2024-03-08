@@ -153,19 +153,11 @@ class HBNBCommand(cmd.Cmd):
         elif len(list_t) == 4:
 
             dict_copy = dic_obj.copy()
-            tmp = ""
+            
             for dic_t, value in dict_copy.items():
                 base_str, id_str = dic_t.split(".")
                 
                 if id_str == list_t[1]:
-                    """new = ""       
-                    st_r = str(list_t[3])
-                    
-                    if list_t[3].startswith('"') and list_t[3].endswith('"'):
-
-                        new = list_t[3][1:-1]
-                    else:
-                        new = str(list_t[3])"""
 
                     setattr(value, list_t[2], list_t[3])
                     storage.new(value) 
