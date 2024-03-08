@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """destroy command"""
-
+        storage.reload()
         dic_t = storage.all()
         list_t = line.split()
         rd = {}
