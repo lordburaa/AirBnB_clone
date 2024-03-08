@@ -63,7 +63,6 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             del_id = "BaseModel." + str(list_t[1])
-            dic_test = ""
 
             if del_id not in dic_t:
                 print("** no instance found **")
@@ -72,12 +71,11 @@ class HBNBCommand(cmd.Cmd):
                 del storage.all()[del_id]
                 storage.save()
                 storage.reload()
-                #dic = dic_t.copy()
-                #save the ins
 
 
     def do_all(self, line):
         """Print all string representaiton of all instnaces based or not on the class name"""
+        storage.reload()
         all_dict = storage.all()
         list_t = line.split()
         #using the for loop
