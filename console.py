@@ -103,6 +103,10 @@ class HBNBCommand(cmd.Cmd):
                         l = l + 1
                         
                     print("]")
+                
+                else:
+                    print("[]")
+
         else:
             if list_t[0] == "BaseModel":
                 li = []
@@ -124,6 +128,8 @@ class HBNBCommand(cmd.Cmd):
                         l = l + 1
                         
                     print("]")
+                else:
+                    print("[]")
 
             else:
                 print("** class doesn't exist **")
