@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
         self._precmd(line)
 
 
-    def _precmd(self, line):
+    def precmd(self, line):
         match = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
         if not match:
             return line
