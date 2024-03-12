@@ -48,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
         classname = match.group(1)
         method = match.group(2)
         args = match.group(3)
-        match_uid_and_args = re.search('^"([^"]*)(?:, (.*))?$', args)
+        match_uid_and_args = re.search('^"([^"]*)"(?:, (.*))?$', args)
         if match_uid_and_args:
             uid = match_uid_and_args.group(1)
             attr_or_dict = match_uid_and_args.group(2)
@@ -66,9 +66,9 @@ class HBNBCommand(cmd.Cmd):
             match_attr_and_value = re.search('^(?:"([^"]*)")?(?:, (.*))?$', attr_or_dict)
             if match_attr_and_value:
                 attr_and_value = (match_attr_and_value.group(1) or "") + " " + (match_attr_and_value.group(2) or "")
-            command = method + " " + classname + " " + uid + " " + attr_and_value
-            self.onecmd(command)
-            return command
+        command = method + " " + classname + " " + uid + " " + attr_and_value
+        self.onecmd(command)
+        return command
 
     def do_show(self, line):
         """show Method"""
