@@ -6,6 +6,7 @@ import json
 import copy
 import cmd
 import os
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -35,6 +36,40 @@ class HBNBCommand(cmd.Cmd):
             obj.save()
             print(obj.id)
     
+    def default(self, line):
+        """catch commands if nothing else matches then."""
+        self._precmd(line)
+
+
+    def _precmd(self, line):
+        match = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
+        if not match:
+            return line
+        classname = match.group(1)
+        method = match.group(2)
+        args = match.group(3)
+        match_uid_and_args = re.search('^"([^"]*)(?:, (.*))?$', args)
+        if match_uid_and_args:
+            uid = match_uid_and_args.group(1)
+            attr_or_dict = match_uid_and_args.group(2)
+        else:
+            uid = args
+            attr_or_dict = False
+
+        attr_and_value = ""
+        if method == "update" and attr_or_dict:
+            match_dict = re.search('^({.*})$', attr_or_dict)
+            if match_dict:
+                self.update_dict(classname, uid, match_dict.group(1))
+                return ""
+
+            match_attr_and_value = re.search('^(?:"([^"]*)")?(?:, (.*))?$', attr_or_dict)
+            if match_attr_and_value:
+                attr_and_value = (match_attr_and_value.group(1) or "") + " " + (match_attr_and_value.group(2) or "")
+            command = method + " " + classname + " " + uid + " " + attr_and_value
+            self.onecmd(command)
+            return command
+
     def do_show(self, line):
         """show Method"""
         storage.reload()
@@ -81,9 +116,9 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
                 storage.reload()
 
-
+    """
     def do_all(self, line):
-        """Print all string representaiton of all instnaces based or not on the class name"""
+        Print all string representaiton of all instnaces based or not on the class name
         storage.reload()
         all_dict = storage.all()
         list_t = line.split()
@@ -114,8 +149,9 @@ class HBNBCommand(cmd.Cmd):
                 li = []
                 
                 for key, value in all_dict.items():
-                    
-                    li.append(str(all_dict[key]))
+                    if type(key).__name__ == list_t[0]:
+
+                        li.append(str(all_dict[key]))
                 
                 if len(li) != 0:
                     l = 0
@@ -134,6 +170,20 @@ class HBNBCommand(cmd.Cmd):
 
             else:
                 print("** class doesn't exist **")
+    """
+    def do_all(self, line):
+        """prints all string representatio of lal instnace
+        """
+        if line != "":
+            words = line.split(' ')
+            if words[0] not in storage.classes():
+                print("** class doesn't exist **")
+            else:
+                nl = [str(obj) for key, obj in storage.all().items() if type(obj).__name__ == words[0]]
+                print(nl)
+        else:
+            new_list = [str(obj) for key, obj in storage.all().items()]
+            print(new_list)
 
     def do_update(self, line):
         """Update an instance based on the class name and id by adding or updating attribute"""
