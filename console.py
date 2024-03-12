@@ -48,6 +48,7 @@ class HBNBCommand(cmd.Cmd):
         classname = match.group(1)
         method = match.group(2)
         args = match.group(3)
+
         match_uid_and_args = re.search('^"([^"]*)"(?:, (.*))?$', args)
         if match_uid_and_args:
             uid = match_uid_and_args.group(1)
@@ -228,7 +229,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             pass
 
-
+    def do_count(self, line):
+        """count number of instance"""
+        list_t = line.split(' ')
+        cl = storage.all()
+        cnt = 0
+        for key in cl.items():
+            tmp = key[0]
+            ky = tmp.split(".")
+            if list_t[0] == ky[0]:
+                cnt = cnt + 1
+        
+        print(cnt)
 
     def do_quit(self, line):
         """Quit command to exit the program\n"""
@@ -241,7 +253,6 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         """Exis the interactive shell"""
         return True
-
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
