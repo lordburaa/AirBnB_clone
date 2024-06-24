@@ -13,9 +13,6 @@ class BaseModel:
         """ init function """
 
         if len(kwargs) != 0:
-            setattr(self, '__class__', BaseModel)
-            if 'id' not in kwargs:
-                self.id = str(uuid.uuid4())
             for key, value in kwargs.items():
                 if (key == 'created_at'):
                     setattr(self, key, datetime.now())
