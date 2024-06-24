@@ -30,7 +30,6 @@ class FileStorage:
             with open('file.json') as t:
                 r = json.load(t)
         r = {**r, **self.__objects}
-        print(r)
         with open(self.__file_path, 'w') as f:
             json.dump(r, f)
 
