@@ -36,6 +36,4 @@ class FileStorage:
         if (os.path.exists(self.__file_path)):
             with open('file.json') as f:
                 self.__objects = json.load(f)
-        else:
-            self.__objects = {}
 
