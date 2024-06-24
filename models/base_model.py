@@ -6,7 +6,7 @@ import uuid
 from datetime import datetime
 
 
-class BaseModel():
+class BaseModel:
     """ base model test """
     def __init__(self, *args, **kwargs):
         """ init function """
