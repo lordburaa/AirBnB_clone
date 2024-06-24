@@ -8,8 +8,10 @@ from datetime import datetime
 
 class BaseModel:
     """ base model test """
+
     def __init__(self, *args, **kwargs):
         """ init function """
+
         if len(kwargs) != 0:
             if 'id' not in kwargs:
                 self.id = str(uuid.uuid4())
