@@ -9,14 +9,14 @@ class BaseModel():
     """ base model test """
     def __init__(self, *args, **kwargs):
         """ init function """
-        if kwargs is False:
+        if len(kwargs) != 0:
             if 'id' not in kwargs:
                 self.id = str(uuid.uuid4())
-            for k in kwargs:
+            for key, value in kwargs.items():
                 if (k == '__class__'):
                     continue
                 else:
-                    setattr(self, k, kwargs[k])
+                    setattr(self, key, value)
         
         else:
             self.id = str(uuid.uuid4())
@@ -24,7 +24,6 @@ class BaseModel():
             self.updated_at = datetime.now()
     def __str__(self):
         """ str function """
-        print("the class printing \n {} \n".format(self.__dict__))
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def to_dict(self):
