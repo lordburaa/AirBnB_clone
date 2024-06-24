@@ -16,8 +16,12 @@ class BaseModel:
             if 'id' not in kwargs:
                 self.id = str(uuid.uuid4())
             for key, value in kwargs.items():
-                if (k == '__class__'):
+                if (key == '__class__'):
                     continue
+                if (key == 'created_at'):
+                    setattr(self, key, datetime.now())
+                if (key == 'updated_at'):
+                    setattr(self, key, datetime.now())
                 else:
                     setattr(self, key, value)
         else:
