@@ -23,7 +23,6 @@ class BaseModel():
         self.updated_at = datetime.now()
     def __str__(self):
         """ str function """
-
         print("the class printing \n {} \n".format(self.__dict__))
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
@@ -35,4 +34,5 @@ class BaseModel():
         dic_t['updated_at'] = self.updated_at.isoformat()
         return dic_t
     def save(self):
+        """ save documentation a"""
         self.updated_at = datetime.now()
