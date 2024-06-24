@@ -19,9 +19,9 @@ class BaseModel:
             for key, value in kwargs.items():
                 if (key == '__class__'):
                     continue
-                if (key == 'created_at'):
+                elif (key == 'created_at'):
                     setattr(self, key, datetime.now())
-                if (key == 'updated_at'):
+                elif (key == 'updated_at'):
                     setattr(self, key, datetime.now())
                 else:
                     setattr(self, key, value)
