@@ -53,7 +53,3 @@ class TestBaseModel_instantiation(unittest.TestCase):
         self.assertEqual(sv_n['created_at'], sv.created_at.isoformat())
         self.assertEqual(sv_n['id'], sv.id)
         self.assertIsInstance(sv, BaseModel)
-
-    def test_new(self):
-        """ test new """
-        pass
