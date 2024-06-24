@@ -3,8 +3,10 @@
 import json
 import os
 
+
 class FileStorage:
     """ storage for the file """
+
     __file_path = "file.json"
     __objects = {}
 
@@ -19,7 +21,7 @@ class FileStorage:
         """ returning new func"""
         key = f"BaseModel.{obj.id}"
         self.__objects[key] = obj.to_dict()
-    
+
     def save(self):
         """ save file json format"""
         r = {}
@@ -27,13 +29,12 @@ class FileStorage:
         if os.path.exists(self.__file_path):
             with open('file.json') as r:
                 r = json.load(r)
-        r= {**r, **self.__objects}
+        r = {**r, **self.__objects}
         with open(self.__file_path, 'w') as f:
             json.dump(r, f)
-        #json.dump(self.__objects, self.__file_path)
+
     def reload(self):
         """ reload json file """
         if (os.path.exists(self.__file_path)):
             with open('file.json') as f:
                 self.__objects = json.load(f)
-
