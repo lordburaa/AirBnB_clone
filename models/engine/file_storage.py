@@ -19,17 +19,18 @@ class FileStorage:
 
     def new(self, obj):
         """ returning new func"""
-        key = f"{obj.__class__.__name__}.{obj.id}"
-        self.__objects[key] = obj.to_dict()
+        key = f"BaseModel.{obj.id}"
+        self.__objects[key] = obj.__str__()
 
     def save(self):
         """ save file json format"""
         r = {}
         tmp = {}
         if os.path.exists(self.__file_path):
-            with open('file.json') as r:
-                r = json.load(r)
+            with open('file.json') as t:
+                r = json.load(t)
         r = {**r, **self.__objects}
+        print(r)
         with open(self.__file_path, 'w') as f:
             json.dump(r, f)
 
