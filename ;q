@@ -1,0 +1,38 @@
+#!/usr/bin/python3
+""" file storage class """
+import json
+import os
+
+class FileStorage:
+    """ storage for the file """
+    __file_path = "file.json"
+    __objects = {}
+
+    def __init__(self):
+        pass
+
+    def all(self):
+        """ returing all method """
+        return self.__objects
+
+    def new(self, obj):
+        """ returning new func"""
+        key = f"BaseModel.{obj.id}"
+        self.__objects[key] = obj.to_dict()
+    
+    def save(self):
+        """ save file json format"""
+        r = {}
+        tmp = {}
+        if os.path.exists(self.__file_path):
+            r = json.load(self.__file_path)
+        r= {**r, **self.__objects}
+        with open(self.__file_path, 'w') as f:
+            json.dump(r, f)
+        #json.dump(self.__objects, self.__file_path)
+    def reload(self):
+        """ reload json file """
+        if (os.path.exists(self.__file_path)):
+               FileStorage. __objects = json.load(self.__file_path)
+
+
