@@ -19,7 +19,7 @@ class FileStorage:
 
     def new(self, obj):
         """ returning new func"""
-        key = f"BaseModel.{obj.id}"
+        key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[key] = obj.__str__()
 
     def save(self):
