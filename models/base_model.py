@@ -2,9 +2,10 @@
 """
 class of base
 """
-import  uuid
-
+import uuid
 from datetime import datetime
+
+
 class BaseModel():
     """ base model test """
     def __init__(self, *args, **kwargs):
@@ -17,11 +18,11 @@ class BaseModel():
                     continue
                 else:
                     setattr(self, key, value)
-        
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+
     def __str__(self):
         """ str function """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
@@ -33,7 +34,7 @@ class BaseModel():
         dic_t['created_at'] = self.created_at.isoformat()
         dic_t['updated_at'] = self.updated_at.isoformat()
         return dic_t
-    
+
     def save(self):
         """ save documentation a"""
         self.updated_at = datetime.now()
