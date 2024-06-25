@@ -28,10 +28,10 @@ class FileStorage:
         with open(self.__file_path, 'w', encoding="UTF-8") as f:
             json.dump(obj_dict, f)
 
-    def cls(self, key, dic):
+    def cls(self, key, **dic):
         from models.base_model import BaseModel
         
-        dic = {'BaseModel': BaseModel(dic)}
+        dic = {'BaseModel': BaseModel(**dic)}
         try:
             return dic[key]
         except:
@@ -41,11 +41,11 @@ class FileStorage:
         """ reload json file """
         obj={}
         if (os.path.exists(self.__file_path)):
-            with open("file.json") as f:
+            with open("file.json", 'r') as f:
                 obj = json.load(f)
                 for key, value in obj.items():
-                    base, dic = key.split('.')
-                    self.__objects[key] = self.cls(base, value)
+                    base, idd = key.split('.')
+                    self.__objects[key] = self.cls(base, **value)
                 
         else:
             return
