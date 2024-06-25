@@ -11,6 +11,7 @@ class FileStorage:
     __objects = {}
 
     def __init__(self):
+        """initialization doc """
         pass
 
     def all(self):
