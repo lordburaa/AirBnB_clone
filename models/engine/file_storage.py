@@ -32,10 +32,10 @@ class FileStorage:
                 r = json.load(t)
         for key, value in self.__objects.items():
             tmp[key] = value.__str__()
-        do = {**tmp, **r}
+        r = {**r, **tmp}
 
         with open(self.__file_path, 'w') as f:
-            json.dump(do, f)
+            json.dump(r, f)
 
     def reload(self):
         """ reload json file """
