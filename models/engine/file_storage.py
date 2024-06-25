@@ -28,12 +28,14 @@ class FileStorage:
         with open(self.__file_path, 'w', encoding="UTF-8") as f:
             json.dump(obj_dict, f)
 
-    def cls(self, key, **dic):
+    def cls(self, key, **dicct):
         from models.base_model import BaseModel
         
-        dic = {'BaseModel': BaseModel(dic)}
+        dic = {'BaseModel': BaseModel}
         try:
-            return dic[key]
+            r = dic[key]
+            return r(**dicct)
+    
         except:
             return None
 
