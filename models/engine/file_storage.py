@@ -31,7 +31,7 @@ class FileStorage:
     def cls(self, key, **dic):
         from models.base_model import BaseModel
         
-        dic = {'BaseModel': BaseModel(**dic)}
+        dic = {'BaseModel': BaseModel(dic)}
         try:
             return dic[key]
         except:
