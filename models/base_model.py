@@ -16,9 +16,11 @@ class BaseModel:
         if len(kwargs) != 0:
             for key, value in kwargs.items():
                 if (key == 'created_at'):
-                    setattr(self, key, datetime.now())
+                    self.created_at = datetime.now()
                 elif (key == 'updated_at'):
-                    setattr(self, key, datetime.now())
+                    self.updated_at = datetime.now()
+                elif (key == '__class__'):
+                    pass
                 else:
                     setattr(self, key, value)
         else:

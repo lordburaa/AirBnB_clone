@@ -3,6 +3,7 @@
 import json
 import os
 import datetime
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -20,23 +21,23 @@ class FileStorage:
 
     def new(self, obj):
         """ returning new func"""
-        if obj:
 
-            key = "{}.{}".format(obj.__class__.__name__, obj.id)
-            self.__objects[key] = obj
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        self.__objects[key] = obj
 
     def save(self):
         """ save file json format"""
-        r = {}
+        obj_dict = {}
         for key, value in self.__objects.items():
-            r[key] = value.to_dict()
+            obj_dict[key] = value.to_dict()
         with open(self.__file_path, 'w', encoding="UTF-8") as f:
-            json.dump(r, f)
+            json.dump(obj_dict, f)
 
     def reload(self):
         """ reload json file """
         if (os.path.exists(self.__file_path)):
             with open("file.json") as f:
                 self.__objects = json.load(f)
+
         else:
             return
