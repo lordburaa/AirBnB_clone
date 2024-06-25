@@ -24,13 +24,28 @@ class FileStorage:
         obj_dict = {}
         for key, value in self.__objects.items():
             obj_dict[key] = value.to_dict()
+
         with open(self.__file_path, 'w', encoding="UTF-8") as f:
             json.dump(obj_dict, f)
 
+    def cls(self, key, dic):
+        from models.base_model import BaseModel
+        
+        dic = {'BaseModel': BaseModel(dic)}
+        try:
+            return dic[key]
+        except:
+            return None
+
     def reload(self):
         """ reload json file """
+        obj={}
         if (os.path.exists(self.__file_path)):
             with open("file.json") as f:
-                self.__objects = json.load(f)
+                obj = json.load(f)
+                for key, value in obj.items():
+                    base, dic = key.split('.')
+                    self.__objects[key] = self.cls(base, value)
+                
         else:
             return
