@@ -20,7 +20,7 @@ class FileStorage:
     def new(self, obj):
         """ returning new func"""
         key = f"{obj.__class__.__name__}.{obj.id}"
-        self.__objects[str(key)] = obj.__str__()
+        self.__objects[key] = obj.__str__()
 
     def save(self):
         """ save file json format"""
@@ -30,7 +30,6 @@ class FileStorage:
             with open("file.json") as t:
                 r = json.load(t)
         tmp = {**r, **self.__objects}
-        print(tmp)
         with open(self.__file_path, 'w') as f:
             json.dump(tmp, f)
 
