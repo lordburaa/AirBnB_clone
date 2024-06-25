@@ -29,6 +29,7 @@ class FileStorage:
             json.dump(obj_dict, f)
 
     def cls(self, key, **dicct):
+        """ instance of the class """
         from models.base_model import BaseModel
         
         dic = {'BaseModel': BaseModel}
