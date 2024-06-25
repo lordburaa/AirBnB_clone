@@ -28,7 +28,7 @@ class FileStorage:
         r = {}
         tmp = {}
         if os.path.exists(self.__file_path):
-            with open(self.__file_path, 'r') as t:
+            with open(self.__file_path, 'r', encoding="utf-8") as t:
                 r = json.load(t)
         for key, value in self.__objects.items():
             tmp[key] = value.__str__()
