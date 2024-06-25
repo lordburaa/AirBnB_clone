@@ -35,7 +35,6 @@ class FileStorage:
         try:
             r = dic[key]
             return r(**dicct)
-    
         except:
             return
 
@@ -43,11 +42,10 @@ class FileStorage:
         """ reload json file """
         obj={}
         if (os.path.exists(self.__file_path)):
-            with open("file.json", 'r') as f:
+            with open("file.json", 'r', encoding="UTF-8") as f:
                 obj = json.load(f)
                 for key, value in obj.items():
                     base, idd = key.split('.')
                     self.__objects[key] = self.cls(base, **value)
-                
         else:
             return
