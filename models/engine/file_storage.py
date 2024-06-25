@@ -29,9 +29,9 @@ class FileStorage:
         if os.path.exists(self.__file_path):
             with open('file.json') as t:
                 r = json.load(t)
-        r = {**r, **self.__objects}
+        tmp = {**r, **self.__objects}
         with open(self.__file_path, 'w') as f:
-            json.dump(r, f)
+            json.dump(tmp, f)
 
     def reload(self):
         """ reload json file """
