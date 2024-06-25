@@ -28,7 +28,7 @@ class FileStorage:
         tmp = {}
         do = {}
         if os.path.exists(self.__file_path):
-            with open("file.json") as t:
+            with open(self.__file_path, 'r') as t:
                 r = json.load(t)
         for key, value in self.__objects.items():
             tmp[key] = value.__str__()
