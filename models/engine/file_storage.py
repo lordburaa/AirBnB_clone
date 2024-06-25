@@ -37,7 +37,7 @@ class FileStorage:
             return r(**dicct)
     
         except:
-            return None
+            return
 
     def reload(self):
         """ reload json file """
