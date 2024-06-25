@@ -10,17 +10,12 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def __init__(self):
-        """initialization doc """
-        pass
-
     def all(self):
         """ returing all method """
         return self.__objects
 
     def new(self, obj):
         """ returning new func"""
-
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
 
@@ -37,6 +32,5 @@ class FileStorage:
         if (os.path.exists(self.__file_path)):
             with open("file.json") as f:
                 self.__objects = json.load(f)
-
         else:
             return
