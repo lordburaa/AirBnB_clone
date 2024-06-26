@@ -46,6 +46,7 @@ class TestBaseModel_instantiation(unittest.TestCase):
 
     def test_save(self):
         """ test save method for the class BaseModel """
+        pass
         sv = BaseModel()
         sv_n = sv.to_dict()
         sv.save()
