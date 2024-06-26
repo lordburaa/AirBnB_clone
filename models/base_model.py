@@ -12,6 +12,9 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """ init function """
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
         if len(kwargs) != 0:
             for key, value in kwargs.items():
@@ -23,10 +26,11 @@ class BaseModel:
                     pass
                 else:
                     setattr(self, key, value)
-        else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new(self)
+        else:
             storage.new(self)
 
     def __str__(self):
