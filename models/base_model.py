@@ -25,9 +25,9 @@ class BaseModel:
                 elif (key == 'updated_at'):
                     self.updated_at = datetime.fromisoformat(kwargs[key])
                 elif (key == '__class__'):
-                    pass
+                    continue
                 else:
-                    setattr(self, key, value)
+                    self.__dict__[key] = value
         else:
             storage.new(self)
 
