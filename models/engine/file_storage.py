@@ -26,7 +26,11 @@ class FileStorage:
             obj_dict[key] = value.to_dict()
 
         with open(self.__file_path, 'w', encoding="UTF-8") as f:
-            json.dump(obj_dict, f)
+            try:
+
+                json.dump(obj_dict, f)
+            except:
+                pass
 
     def cls(self, key, **dicct):
         """ instance of the class """
