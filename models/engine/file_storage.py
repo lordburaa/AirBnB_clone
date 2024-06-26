@@ -33,11 +33,8 @@ class FileStorage:
         from models.base_model import BaseModel
         
         dic = {'BaseModel': BaseModel}
-        try:
-            r = dic[key]
-            return r(**dicct)
-        except:
-            return None
+        r = dic[key]
+        return r(**dicct)
 
 
     def reload(self):
