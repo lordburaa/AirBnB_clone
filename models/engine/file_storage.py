@@ -51,7 +51,7 @@ class FileStorage:
                     obj = json.load(f)
 
                 except:
-                    pass
+                    obj = None
                 if obj is None:
                     obj={}
                 for key, value in obj.items():
