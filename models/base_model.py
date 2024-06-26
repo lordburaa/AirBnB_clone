@@ -16,9 +16,9 @@ class BaseModel:
         if len(kwargs) != 0:
             for key, value in kwargs.items():
                 if (key == 'created_at'):
-                    self.created_at = datetime.now()
+                    self.created_at = kwargs[key]
                 elif (key == 'updated_at'):
-                    self.updated_at = datetime.now()
+                    self.updated_at = kwargs[key]
                 elif (key == '__class__'):
                     pass
                 else:
