@@ -25,12 +25,8 @@ class FileStorage:
         for key, value in FileStorage.__objects.items():
             obj_dict[key] = value.to_dict()
 
-        with open(FileStorage.__file_path, 'w', encoding="UTF-8") as f:
-            try:
-
+        with open(FileStorage.__file_path, 'w') as f:
                 json.dump(obj_dict, f)
-            except:
-                pass
 
     def cls(self, key, **dicct):
         """ instance of the class """
@@ -46,14 +42,9 @@ class FileStorage:
         obj=None
         if (os.path.exists(FileStorage.__file_path)):
             with open(FileStorage.__file_path, 'r', encoding="UTF-8") as f:
-                try:
 
-                    obj = json.load(f)
+                obj = json.load(f)
 
-                except:
-                    obj = None
-                if obj is None:
-                    obj={}
                 for key, value in obj.items():
-                    base, idd = key.split('.')
+                    base = value['__class__']
                     FileStorage.__objects[key] = self.cls(base, **value)
