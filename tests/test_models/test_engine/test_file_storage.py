@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+""" unittes for models engine
+"""
+import os
+import json
+from models.base_model import BaseModel
 import unittest
 from  models.engine.file_storage import FileStorage
 
@@ -7,6 +12,5 @@ from  models.engine.file_storage import FileStorage
 class TestFileStorage(unittest.TestCase):
     """ unittest for the file storage """
     
-    def test_instance(self):
-        f = FileStorage()
-        self.assertEqual(FileStorage,type(FileStorage)))
+    def test_file_storage_instance(self):
+        self.assertEqual(FileStorage, type(FileStorage)))
