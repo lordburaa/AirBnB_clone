@@ -21,11 +21,11 @@ class BaseModel:
                 if (key == 'created_at'):
                     self.created_at = datetime.fromisoformat(kwargs[key])
                 elif (key == 'id'):
-                    self.id = str(kwargs[key])
+                    self.id = kwargs[key]
                 elif (key == 'updated_at'):
                     self.updated_at = datetime.fromisoformat(kwargs[key])
                 elif (key == '__class__'):
-                    self.__dict__[key] = BaseModel
+                    continue
                 else:
                     self.__dict__[key] = value
         else:
