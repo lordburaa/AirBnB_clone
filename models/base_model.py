@@ -20,6 +20,8 @@ class BaseModel:
             for key, value in kwargs.items():
                 if (key == 'created_at'):
                     self.created_at = datetime.fromisoformat(kwargs[key])
+                elif (key == 'id'):
+                    self.id = str(kwargs[key])
                 elif (key == 'updated_at'):
                     self.updated_at = datetime.fromisoformat(kwargs[key])
                 elif (key == '__class__'):
