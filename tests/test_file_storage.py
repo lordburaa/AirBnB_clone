@@ -8,5 +8,5 @@ class TestFileStorage(unittest.TestCase):
     """ unittest for the file storage """
     
     def test_instance(self):
-
-        self.assert(FileStorage, 
+        f = FileStorage()
+        self.assertEqual(FileStorage,type(FileStorage)))
