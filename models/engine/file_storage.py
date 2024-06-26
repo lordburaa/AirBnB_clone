@@ -39,10 +39,17 @@ class FileStorage:
 
     def reload(self):
         """ reload json file """
-        obj={}
+        obj=None
         if (os.path.exists(self.__file_path)):
             with open("file.json", 'r', encoding="UTF-8") as f:
-                obj = json.load(f)
+                try:
+
+                    obj = json.load(f)
+
+                except:
+                    pass
+                if obj is None:
+                    return
                 for key, value in obj.items():
                     base, idd = key.split('.')
                     self.__objects[key] = self.cls(base, **value)
