@@ -26,20 +26,19 @@ class FileStorage:
             obj_dict[key] = value.to_dict()
 
         with open(FileStorage.__file_path, 'w') as f:
-                json.dump(obj_dict, f)
+            json.dump(obj_dict, f)
 
     def cls(self, key, **dicct):
         """ instance of the class """
         from models.base_model import BaseModel
-        
+
         dic = {'BaseModel': BaseModel}
         r = dic[key]
         return r(**dicct)
 
-
     def reload(self):
         """ reload json file """
-        obj=None
+        obj = None
         if (os.path.exists(FileStorage.__file_path)):
             with open(FileStorage.__file_path, 'r', encoding="UTF-8") as f:
 
