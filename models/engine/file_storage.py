@@ -9,6 +9,10 @@ class FileStorage:
     """ storage for the file """
     __file_path = "file.json"
     __objects = {}
+    
+    def __init__(self):
+        """ initialization """
+        pass
 
     def all(self):
         """ returing all method """
