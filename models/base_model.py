@@ -25,7 +25,7 @@ class BaseModel:
                 elif (key == 'updated_at'):
                     self.updated_at = datetime.fromisoformat(kwargs[key])
                 elif (key == '__class__'):
-                    self.__class__.__name__ = BaseModel
+                    self.__dict__[key] = BaseModel
                 else:
                     self.__dict__[key] = value
         else:
