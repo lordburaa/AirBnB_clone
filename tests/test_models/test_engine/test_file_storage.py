@@ -12,4 +12,4 @@ class TestFileStorage(unittest.TestCase):
     """ unittest for the file storage """
 
     def test_file_storage_instance(self):
-        self.assertEqual(FileStorage, type(FileStorage))
+        self.assertEqual(FileStorage, type(FileStorage()))
