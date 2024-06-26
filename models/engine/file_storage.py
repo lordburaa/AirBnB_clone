@@ -53,7 +53,7 @@ class FileStorage:
                 except:
                     pass
                 if obj is None:
-                    return
+                    obj={}
                 for key, value in obj.items():
                     base, idd = key.split('.')
                     self.__objects[key] = self.cls(base, **value)
