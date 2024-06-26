@@ -17,15 +17,15 @@ class FileStorage:
     def new(self, obj):
         """ returning new func"""
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        self.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """ save file json format"""
         obj_dict = {}
-        for key, value in self.__objects.items():
+        for key, value in FileStorage.__objects.items():
             obj_dict[key] = value.to_dict()
 
-        with open(self.__file_path, 'w', encoding="UTF-8") as f:
+        with open(FileStorage.__file_path, 'w', encoding="UTF-8") as f:
             try:
 
                 json.dump(obj_dict, f)
@@ -44,8 +44,8 @@ class FileStorage:
     def reload(self):
         """ reload json file """
         obj=None
-        if (os.path.exists(self.__file_path)):
-            with open("file.json", 'r', encoding="UTF-8") as f:
+        if (os.path.exists(FileStorage.__file_path)):
+            with open(FileStorage.__file_path, 'r', encoding="UTF-8") as f:
                 try:
 
                     obj = json.load(f)
@@ -56,4 +56,4 @@ class FileStorage:
                     obj={}
                 for key, value in obj.items():
                     base, idd = key.split('.')
-                    self.__objects[key] = self.cls(base, **value)
+                    FileStorage.__objects[key] = self.cls(base, **value)
