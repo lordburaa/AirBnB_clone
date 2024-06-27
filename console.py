@@ -10,6 +10,12 @@ class HBNBCommand(cmd.Cmd):
     """cmd interactive shell"""
     prompt = '(hbnb) ' 
     clss_name = ["BaseModel"]
+    
+    def default(self, line):
+        print("default printed")
+
+    def emptyline(self):
+        return cmd.Cmd.emptyline(self)
 
     def do_create(self, cls):
         """create new instance of BaseModel"""
