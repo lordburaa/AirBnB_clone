@@ -45,9 +45,13 @@ class FileStorage:
         obj = None
         if (os.path.exists(FileStorage.__file_path)):
             with open(FileStorage.__file_path, 'r', encoding="UTF-8") as f:
+                try:
 
-                obj = json.load(f)
+                    obj = json.load(f)
 
-                for key, value in obj.items():
-                    base = value['__class__']
-                    FileStorage.__objects[key] = self.cls(base, **value)
+                    for key, value in obj.items():
+                        base = value['__class__']
+                        FileStorage.__objects[key] = self.cls(base, **value)
+
+                except:
+                    pass
