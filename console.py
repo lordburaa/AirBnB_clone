@@ -14,6 +14,13 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         print("default printed")
     
+    def onecmd(self, intro=None):
+        """onecmd loop"""
+        return cmd.Cmd.cmdloop(self, intro)
+
+    def emptyline(self):
+        return cmd.Cmd.onecmd(self)
+
     def help(self):
         return True
 
@@ -30,6 +37,7 @@ class HBNBCommand(cmd.Cmd):
             base = BaseModel()
             print(base.id)
             base.save()
+
     def do_show(self, clss):
         """prints the string representation of an instance"""
         list_t = list(clss.split(' '))
