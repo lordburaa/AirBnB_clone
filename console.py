@@ -13,6 +13,9 @@ class HBNBCommand(cmd.Cmd):
     
     def default(self, line):
         print("default printed")
+    
+    def help(self):
+        return True
 
     def emptyline(self):
         return cmd.Cmd.emptyline(self)
@@ -77,7 +80,7 @@ class HBNBCommand(cmd.Cmd):
                 for key, value in json_obj.items():
                     base, idd = key.split('.')
                     if (arg[0] ==  base):
-                        list_t.append(value)
+                        list_t.append(str(BaseModel(**value)))
                 print(list_t)
                 
     def do_update(self, arg):
@@ -95,7 +98,6 @@ class HBNBCommand(cmd.Cmd):
             with open('file.json', 'r+') as r:
                 json_obj = json.load(r)
                 key = list_t[0] + '.' + list_t[1]
-                print(key)
                 if key not in json_obj:
                     print("** no instance found **")
                 elif len(list_t) == 2:
