@@ -42,13 +42,10 @@ class HBNBCommand(cmd.Cmd):
         print(list_t)
         if len(list_t) == 0:
             print("** class name missing **")
-
         elif list_t[0] not in self.clss_name:
             print("** class doesn't exist **")
-
         elif len(list_t) == 1:
             print("** instance id missing **")
-
         else:
             try:
                 with open('file.json', 'r') as r:
@@ -84,7 +81,6 @@ class HBNBCommand(cmd.Cmd):
                     if idd == list_t[1]:
                         keyy = key
                         del json_obj[keyy]
-                        break
             with open('file.json', 'w') as w:
                 json.dump(json_obj, w)
 
