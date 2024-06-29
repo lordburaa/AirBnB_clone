@@ -38,7 +38,7 @@ class HBNBCommand(cmd.Cmd):
         """prints the string representation of an instance based on  the CLASS name"""
         list_t = list(clss.split(' '))
         if len(list_t) ==  0:
-            print("** class name is missing **")
+            print("** class name missing **")
 
         elif list_t[0] not in self.clss_name:
             print("** class doesn't exist **")
