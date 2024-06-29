@@ -75,9 +75,11 @@ class HBNBCommand(cmd.Cmd):
             json_obj = {}
             with open('file.json', 'r') as r:
                 json_obj = json.load(r)
+                base_n_id = list_t[0] + '.' + list_t[1]
+
                 for key, value in json_obj.items():
                     base, idd = key.split('.')
-                    if idd == list_t[1]:
+                    if key == base_n_id:
                         del json_obj[key]
                         break
             with open('file.json', 'w') as w:
