@@ -126,10 +126,14 @@ class HBNBCommand(cmd.Cmd):
                 elif len(list_t) == 3:
                     print("** value missing **")
                 else:
-                    att_name = re.search("^[\\w_]+", list_t[2])
-                    att_value = re.search("[\\w\\d]+", list_t[3])
+                    #att_name = re.search("^[\\w_]+", list_t[2])
+                    #att_value = re.search(r'^(?!["\'].*["\']).*$', list_t[3])
+                 
                     value = json_obj[key]
-                    value[att_name.group(0)] = att_value.group(0)
+                    #value[att_name.group(0)] = att_value.group(0)
+                    if (list_t[3].startswith('"') and list_t[3].endswith('"')) or (list_t[3].startswith("'") and list_t[3].endswith("'")):
+                            att_value = list_t[3][1:-1]
+                            value[list_t[2]] = att_value
                     json_obj[key] = value
                     w.seek(0)
                     json.dump(json_obj, w)
