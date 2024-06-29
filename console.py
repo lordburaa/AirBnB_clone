@@ -66,15 +66,17 @@ class HBNBCommand(cmd.Cmd):
         elif len(list_t) == 1:
             print("** instance id missing **")
         else:
+            json_obj = {}
+            keyy = None
             with open('file.json', 'r') as r:
                 json_obj = json.load(r)
                 for key, value in json_obj.items():
                     base, idd = key.split('.')
                     if idd == list_t[1]:
-                        del[json_obj[key]]
-                        print(json_obj)
-                        with open('file.json', 'w') as w:
-                            json.dump(json_obj)
+                        keyy = key
+            del json_obj[keyy]
+            with open('file.json', 'w') as w:
+                json.dump(json_obj, w)
 
     def do_all(self, clss):
         """prints all string representation of all instance based or not on the class name"""
@@ -120,7 +122,13 @@ class HBNBCommand(cmd.Cmd):
                     value = json_obj[key]
                     value[str(att_name.group(0))] = att_value.group(0) 
                     json_obj[key] = value
+                    print("================> json_obj")
+                    print(json_obj)
+                    print("==============> sr obj")
+
                     sr = json_obj.copy()
+                    print(sr)
+            print("outside : ", sr)
             if sr:
                 with open('file.json', 'w') as w:
                     json.dump(sr, w)
