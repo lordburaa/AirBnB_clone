@@ -6,14 +6,15 @@ from models.base_model import BaseModel
 from models import storage
 import re
 
+
 class HBNBCommand(cmd.Cmd):
     """cmd interactive shell"""
-    prompt = '(hbnb) ' 
+    prompt = '(hbnb) '
     clss_name = ["BaseModel"]
-    
+
     def default(self, line):
         """default when no argument is passed"""
-        pass 
+        pass
 
     def help(self):
         """Help command"""
@@ -21,7 +22,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """empty line"""
-        pass 
+        pass
 
     def do_create(self, cls):
         """create new instance of BaseModel and Save to JSON File"""
@@ -35,10 +36,11 @@ class HBNBCommand(cmd.Cmd):
             base.save()
 
     def do_show(self, clss):
-        """prints the string representation of an instance based on  the CLASS name"""
+        """prints the string representation of an instance
+        based on  the CLASS name"""
         list_t = list(clss.split(' '))
         print(list_t)
-        if len(list_t) ==  0:
+        if len(list_t) == 0:
             print("** class name missing **")
 
         elif list_t[0] not in self.clss_name:
@@ -60,8 +62,9 @@ class HBNBCommand(cmd.Cmd):
                             print(BaseModel(**value))
                     if flag:
                         print("** no instance found **")
-            except:
+            except FileNotFoundError:
                 print("** no instance found **")
+
     def do_destroy(self, clss):
         """destroy an instance basd on the class name """
         list_t = list(clss.split(' '))
@@ -86,7 +89,8 @@ class HBNBCommand(cmd.Cmd):
                 json.dump(json_obj, w)
 
     def do_all(self, clss):
-        """prints all string representation of all instance based or not on the class name"""
+        """prints all string representation of all instance
+        based or not on the class name"""
         list_t = []
         dic_t = {}
         if clss not in self.clss_name:
@@ -97,10 +101,10 @@ class HBNBCommand(cmd.Cmd):
                 json_obj = json.load(r)
                 for key, value in json_obj.items():
                     base, idd = key.split('.')
-                    if (arg[0] ==  base):
+                    if (arg[0] == base):
                         list_t.append(str(BaseModel(**value)))
                 print(list_t)
-                
+
     def do_update(self, arg):
         """updates an instance based on the class name and id"""
         list_t = list(arg.split(' '))
@@ -123,11 +127,10 @@ class HBNBCommand(cmd.Cmd):
                 elif len(list_t) == 3:
                     print("** value missing **")
                 else:
-                    att_name = re.search("^[\w_]+", list_t[2])
-                    att_value = re.search("\w+", list_t[3])
-                    
+                    att_name = re.search("^[\\w_]+", list_t[2])
+                    att_value = re.search("\\w+", list_t[3])
                     value = json_obj[key]
-                    value[att_name.group(0)] = att_value.group(0) 
+                    value[att_name.group(0)] = att_value.group(0)
                     json_obj[key] = value
                     w.seek(0)
                     json.dump(json_obj, w)
@@ -139,6 +142,7 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         """ end of the file """
         return True
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
