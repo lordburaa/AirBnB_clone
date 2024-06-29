@@ -134,6 +134,8 @@ class HBNBCommand(cmd.Cmd):
                     if (list_t[3].startswith('"') and list_t[3].endswith('"')) or (list_t[3].startswith("'") and list_t[3].endswith("'")):
                             att_value = list_t[3][1:-1]
                             value[list_t[2]] = att_value
+                    else:
+                        value[list_t[2]] = list_t[3]
                     json_obj[key] = value
                     w.seek(0)
                     json.dump(json_obj, w)
