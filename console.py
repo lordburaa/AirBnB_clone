@@ -73,14 +73,13 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             json_obj = {}
-            keyy = None
             with open('file.json', 'r') as r:
                 json_obj = json.load(r)
                 for key, value in json_obj.items():
                     base, idd = key.split('.')
                     if idd == list_t[1]:
-                        keyy = key
-                        del json_obj[keyy]
+                        del json_obj[key]
+
             with open('file.json', 'w') as w:
                 json.dump(json_obj, w)
 
