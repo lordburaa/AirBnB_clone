@@ -105,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
         """updates an instance based on the class name and id"""
         list_t = list(arg.split(' '))
 
-        if len(list_t) == 0:
+        if not arg:
             print("** class name is missing **")
         elif list_t[0] not in self.clss_name:
             print("** class doesn't exist **")
