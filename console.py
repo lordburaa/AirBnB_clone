@@ -16,9 +16,11 @@ class HBNBCommand(cmd.Cmd):
         pass 
 
     def help(self):
+        """Help command"""
         return True
 
     def emptyline(self):
+        """empty line"""
         pass 
 
     def do_create(self, cls):
@@ -45,21 +47,23 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
         else:
-            with open('file.json') as r:
-                json_obj = json.load(r)
-                for key, value in json_obj.items():
-                    base, idd = key.split('.')
-                    if (idd == list_t[1]):
-                        print(BaseModel(**value))
-    
+            try:
+                with open('file.json') as r:
+                    json_obj = json.load(r)
+                    for key, value in json_obj.items():
+                        base, idd = key.split('.')
+                        if (idd == list_t[1]):
+                            print(BaseModel(**value))
+            except:
+                print("** instance id missing **")
     def do_destroy(self, clss):
         """destroy an instance"""
         list_t = list(clss.split(' '))
-        if len(list_t) == 0:
+        if len(list_t) == 1:
             print("** class name is missing **")
-        elif list_t[0] not in self.clss_name:
+        elif list_t[1] not in self.clss_name:
             print("** class doesn't exist **")
-        elif len(list_t[0]) == 1:
+        elif len(list_t) == 2:
             print("** instance id missing **")
         else:
             with open('file.json', 'r') as r:
@@ -110,8 +114,11 @@ class HBNBCommand(cmd.Cmd):
                 elif len(list_t) == 3:
                     print("** value missing **")
                 else:
+                    att_name = re.search("^[\w_]+", list_t[2])
+                    att_value = re.search("\w+", list_t[3])
+                    
                     value = json_obj[key]
-                    value[list_t[2]] = list_t[3]
+                    value[str(att_name.group(0))] = att_value.group(0) 
                     json_obj[key] = value
                     sr = json_obj.copy()
             if sr:
