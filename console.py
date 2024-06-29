@@ -48,12 +48,18 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             try:
-                with open('file.json') as r:
+                with open('file.json', 'r') as r:
                     json_obj = json.load(r)
+                    base_n_id = list_t[0] + '.' + list_t[1]
+                    flag = 0
+                    if base_n_id not in json_obj:
+                        flag = 1
                     for key, value in json_obj.items():
                         base, idd = key.split('.')
                         if (idd == list_t[1]):
                             print(BaseModel(**value))
+                    if flag:
+                        print("** no instance found **")
             except:
                 print("** no instance found **")
     def do_destroy(self, clss):
