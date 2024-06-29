@@ -112,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(list_t) == 1:
             print("** instance id missing **")
         else:
-            sr = {}
+            json_obj = {}
             with open('file.json', 'r+') as r:
                 json_obj = json.load(r)
                 key = list_t[0] + '.' + list_t[1]
@@ -130,8 +130,8 @@ class HBNBCommand(cmd.Cmd):
                     value[str(att_name.group(0))] = str(att_value.group(0)) 
                     json_obj[key] = value
 
-                    with open('file.json', 'w') as w:
-                        json.dump(json_obj, w)
+            with open('file.json', 'w') as w:
+                json.dump(json_obj, w)
 
     def do_quit(self, line):
         """Quit command to exit the program\n"""
