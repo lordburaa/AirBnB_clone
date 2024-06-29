@@ -127,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
                     att_value = re.search("\w+", list_t[3])
                     
                     value = json_obj[key]
-                    value[str(att_name.group(0))] = att_value.group(0) 
+                    value[str(att_name.group(0))] = str(att_value.group(0)) 
                     json_obj[key] = value
 
                     with open('file.json', 'w') as w:
