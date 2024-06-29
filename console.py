@@ -92,7 +92,6 @@ class HBNBCommand(cmd.Cmd):
         """prints all string representation of all instance
         based or not on the class name"""
         list_t = []
-        dic_t = {}
         if clss not in self.clss_name:
             print("** class doesn't exist **")
         else:
