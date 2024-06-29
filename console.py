@@ -65,8 +65,8 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, clss):
         """destroy an instance basd on the class name """
         list_t = list(clss.split(' '))
-        if len(list_t) == 0:
-            print("** class name is missing **")
+        if not clss:
+            print("** class name missing **")
         elif list_t[0] not in self.clss_name:
             print("** class doesn't exist **")
         elif len(list_t) == 1:
@@ -80,7 +80,8 @@ class HBNBCommand(cmd.Cmd):
                     base, idd = key.split('.')
                     if idd == list_t[1]:
                         keyy = key
-            del json_obj[keyy]
+                        del json_obj[keyy]
+                        break
             with open('file.json', 'w') as w:
                 json.dump(json_obj, w)
 
