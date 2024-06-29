@@ -127,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** value missing **")
                 else:
                     att_name = re.search("^[\\w_]+", list_t[2])
-                    att_value = re.search("\\w+", list_t[3])
+                    att_value = re.search("[\\w\\d]+", list_t[3])
                     value = json_obj[key]
                     value[att_name.group(0)] = att_value.group(0)
                     json_obj[key] = value
