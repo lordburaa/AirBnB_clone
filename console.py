@@ -12,20 +12,14 @@ class HBNBCommand(cmd.Cmd):
     clss_name = ["BaseModel"]
     
     def default(self, line):
-        print("default printed")
-    
-    def onecmd(self, intro=None):
-        """onecmd loop"""
-        return cmd.Cmd.cmdloop(self, intro)
-
-    def emptyline(self):
-        return cmd.Cmd.onecmd(self)
+        """default when no argument is passed"""
+        pass 
 
     def help(self):
         return True
 
     def emptyline(self):
-        return cmd.Cmd.emptyline(self)
+        pass 
 
     def do_create(self, cls):
         """create new instance of BaseModel"""
@@ -43,10 +37,13 @@ class HBNBCommand(cmd.Cmd):
         list_t = list(clss.split(' '))
         if len(list_t) ==  0:
             print("class name is missing ")
+
         elif list_t[0] not in self.clss_name:
             print("class doesn't exist **")
+
         elif len(list_t) <= 1:
             print("** instance id missing **")
+
         else:
             with open('file.json') as r:
                 json_obj = json.load(r)
