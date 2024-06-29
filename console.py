@@ -122,13 +122,8 @@ class HBNBCommand(cmd.Cmd):
                     value = json_obj[key]
                     value[str(att_name.group(0))] = att_value.group(0) 
                     json_obj[key] = value
-                    print("================> json_obj")
-                    print(json_obj)
-                    print("==============> sr obj")
 
                     sr = json_obj.copy()
-                    print(sr)
-            print("outside : ", sr)
             if sr:
                 with open('file.json', 'w') as w:
                     json.dump(sr, w)
