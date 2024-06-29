@@ -96,12 +96,15 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             arg = list(clss.split(' '))
-            with open('file.json', 'r') as r:
-                json_obj = json.load(r)
-                for key, value in json_obj.items():
-                    base, idd = key.split('.')
-                    if (arg[0] == base):
-                        list_t.append(str(BaseModel(**value)))
+            try:
+                with open('file.json', 'r') as r:
+                    json_obj = json.load(r)
+                    for key, value in json_obj.items():
+                        base, idd = key.split('.')
+                        if (arg[0] == base):
+                            list_t.append(str(BaseModel(**value)))
+                    print(list_t)
+            except FileNotFoundError:
                 print(list_t)
 
     def do_update(self, arg):
