@@ -24,24 +24,24 @@ class HBNBCommand(cmd.Cmd):
         pass 
 
     def do_create(self, cls):
-        """create new instance of BaseModel"""
+        """create new instance of BaseModel and Save to JSON File"""
         if not cls:
             print("** class name missing **")
         elif cls not in self.clss_name:
-            print("**class doesn't exist **")
+            print("** class doesn't exist **")
         else:
             base = BaseModel()
             print(base.id)
             base.save()
 
     def do_show(self, clss):
-        """prints the string representation of an instance"""
+        """prints the string representation of an instance based on  the CLASS name"""
         list_t = list(clss.split(' '))
         if len(list_t) ==  0:
-            print("class name is missing ")
+            print("** class name is missing **")
 
         elif list_t[0] not in self.clss_name:
-            print("class doesn't exist **")
+            print("** class doesn't exist **")
 
         elif len(list_t) <= 1:
             print("** instance id missing **")
@@ -55,15 +55,15 @@ class HBNBCommand(cmd.Cmd):
                         if (idd == list_t[1]):
                             print(BaseModel(**value))
             except:
-                print("** instance id missing **")
+                print("** no instance found **")
     def do_destroy(self, clss):
-        """destroy an instance"""
+        """destroy an instance basd on the class name """
         list_t = list(clss.split(' '))
-        if len(list_t) == 1:
+        if len(list_t) == 0:
             print("** class name is missing **")
-        elif list_t[1] not in self.clss_name:
+        elif list_t[0] not in self.clss_name:
             print("** class doesn't exist **")
-        elif len(list_t) == 2:
+        elif len(list_t) == 1:
             print("** instance id missing **")
         else:
             with open('file.json', 'r') as r:
