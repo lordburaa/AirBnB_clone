@@ -123,10 +123,8 @@ class HBNBCommand(cmd.Cmd):
                     value[str(att_name.group(0))] = att_value.group(0) 
                     json_obj[key] = value
 
-                    sr = json_obj.copy()
-            if sr:
-                with open('file.json', 'w') as w:
-                    json.dump(sr, w)
+                    with open('file.json', 'w') as w:
+                        json.dump(json_obj, w)
 
     def do_quit(self, line):
         """Quit command to exit the program\n"""
