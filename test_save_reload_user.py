@@ -11,8 +11,6 @@ for obj_id in all_objs.keys():
 
 print("-- Create a new User --")
 my_user = User()
-print(my_user.hello())
-exit()
 my_user.first_name = "Betty"
 my_user.last_name = "Bar"
 my_user.email = "airbnb@mail.com"
