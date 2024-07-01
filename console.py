@@ -67,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
                         for k, v in self.clss_name.items():
                             if (base_n_id == key and k == base):
                                 va = self.clss_name[k]
-                                print(va(**value))
+                                print(str(va(**value)))
                                 break
 
                     if flag:
