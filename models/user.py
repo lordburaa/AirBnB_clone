@@ -19,7 +19,3 @@ class User(BaseModel):
         self.last_name = ''
         if kwargs:
             super().__init__(*args, **kwargs)
-
-    def __str__(self):
-        """ str function """
-        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
