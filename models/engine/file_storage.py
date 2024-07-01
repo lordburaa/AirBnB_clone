@@ -40,7 +40,7 @@ class FileStorage:
         dic = {'BaseModel': BaseModel,
                 'User': User }
         r = dic[key]
-        return r(**dicct)
+        return str(r(**dicct))
 
     def reload(self):
         """ reload json file """
