@@ -87,7 +87,7 @@ class HBNBCommand(cmd.Cmd):
                             break
             except FileNotFoundError:
                 flag = 0
-            if flag:
+            if flag == 1:
                 with open('file.json', 'w') as w:
                     json.dump(json_obj, w)
 
