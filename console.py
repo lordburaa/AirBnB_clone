@@ -109,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
                 print(list_t)
             except FileNotFoundError:
                 print(list_t)
-        elif arg in self.clss_name:
+        elif arg[0] in self.clss_name:
             with open('file.json', 'r') as r:
                 json_obj = json.load(r)
                 for key, value in json_obj.items():
@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
                         list_t.append(str(BaseModel(**value)))
             print(list_t)
         else:
-            print("** cslass doesn't exist **")
+            print("** class doesn't exist **")
 
     def do_update(self, arg):
         """updates an instance based on the class name and id"""
