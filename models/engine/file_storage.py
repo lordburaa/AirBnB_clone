@@ -52,8 +52,6 @@ class FileStorage:
 
                     for key, value in obj.items():
                         base = value['__class__']
-                        print("====>\nclass name===>, ", base)
                         FileStorage.__objects[key] = self.cls(base, **value)
-
                 except:
                     pass

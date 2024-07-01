@@ -12,13 +12,16 @@ class User(BaseModel):
     """
     def __init__(self, *args, **kwargs):
         """ initalization """
-        super().__init__()
+        if not kwargs:
+
+            super().__init__()
+        if kwargs:
+            super().__init__(**kwargs)
         self.email = ''
         self.password = ''
         self.first_name = ''
         self.last_name = ''
         self.__dict__['__class__'] = 'User'
-      
 
     def __str__(self):
         """ str function """

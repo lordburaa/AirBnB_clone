@@ -34,7 +34,11 @@ class HBNBCommand(cmd.Cmd):
         elif list_t[0] not in self.clss_name:
             print("** class doesn't exist **")
         else:
-            base = BaseModel()
+            for clss_key, value in self.clss_name.items():
+                if clss_key == list_t[0]:
+
+                    base = value()
+                    break
             print(base.id)
             base.save()
 
@@ -109,10 +113,10 @@ class HBNBCommand(cmd.Cmd):
                     json_obj = json.load(r)
                     for key, value in json_obj.items():
                         base, idd = key.split('.')
-                        inss = self.clss_name[base]
-                        print(value)
-                        list_t.append((self.fun(base, **value)))
-                        print("AFTRE PASSING THE DICITNARY")
+                        for k, v in self.clss_name.items():
+                            if base == k:
+                                inss = self.clss_name[k]
+                                list_t.append(str(inss(**value)))
                 
                 print(list_t)
             except FileNotFoundError:
@@ -132,8 +136,8 @@ class HBNBCommand(cmd.Cmd):
     
     def fun(self, cl, **value):
         """ returiing the instance based on the class **"""
-        cls = self.clss_name[cl]
-        return cls(**value)
+        #cls = self.clss_name[cl]
+        return str(cl(**value))
 
     def do_update(self, arg):
         """updates an instance based on the class name and id"""
