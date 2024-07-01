@@ -97,20 +97,28 @@ class HBNBCommand(cmd.Cmd):
         """prints all string representation of all instance
         based or not on the class name"""
         list_t = []
-        if clss not in self.clss_name:
-            print("** class doesn't exist **")
-        else:
-            arg = list(clss.split(' '))
+
+        arg = list(clss.split(' '))
+        if not clss:
             try:
                 with open('file.json', 'r') as r:
                     json_obj = json.load(r)
                     for key, value in json_obj.items():
                         base, idd = key.split('.')
-                        if (arg[0] == base):
-                            list_t.append(str(BaseModel(**value)))
-                    print(list_t)
+                        list_t.append(str(BaseModel(**value)))
+                print(list_t)
             except FileNotFoundError:
                 print(list_t)
+        elif arg in self.clss_name:
+            with open('file.json', 'r') as r:
+                json_obj = json.load(r)
+                for key, value in json_obj.items():
+                    base, idd = key.split('.')
+                    if (arg[0] == base):
+                        list_t.append(str(BaseModel(**value)))
+            print(list_t)
+        else:
+            print("** class doesn't exist **")
 
     def do_update(self, arg):
         """updates an instance based on the class name and id"""
