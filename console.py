@@ -94,8 +94,10 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, clss):
-        """prints all string representation of all instance
-        based or not on the class name"""
+        """prints all string representation of an instance 
+        use bare `all` command to print all instance in the storage
+        use `all command_base` if command_base is exist in the storage it will print all the instance
+        """
         list_t = []
 
         arg = list(clss.split(' '))
