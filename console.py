@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
                         list_t.append(str(BaseModel(**value)))
             print(list_t)
         else:
-            print("** class doesn't exist **")
+            print("** cslass doesn't exist **")
 
     def do_update(self, arg):
         """updates an instance based on the class name and id"""
