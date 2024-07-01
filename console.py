@@ -26,9 +26,10 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, cls):
         """create new instance of BaseModel and Save to JSON File"""
+        list_t = list(cls.split(' '))
         if not cls:
             print("** class name missing **")
-        elif cls not in self.clss_name:
+        elif list_t[0] not in self.clss_name:
             print("** class doesn't exist **")
         else:
             base = BaseModel()
