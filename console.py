@@ -91,14 +91,17 @@ class HBNBCommand(cmd.Cmd):
                 with open('file.json', 'r') as r:
                     json_obj = json.load(r)
                     base_n_id = list_t[0] + '.' + list_t[1]
-
+                    br = 0
                     for key, value in json_obj.items():
                         for k, v in self.clss_name.items():
 
-                            if key == base_n_id and list_[0] == k:
+                            if key == base_n_id:
                                 flag = 1
                                 del json_obj[key]
+                                br = 1
                                 break
+                        if br:
+                            break
             except FileNotFoundError:
                 flag = 0
             if flag == 1:
