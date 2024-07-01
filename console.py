@@ -10,7 +10,7 @@ import re
 class HBNBCommand(cmd.Cmd):
     """cmd interactive shell"""
     prompt = '(hbnb) '
-    clss_name = ["BaseModel"]
+    clss_name = ["BaseModel", "User"]
 
     def default(self, line):
         """default when no argument is passed"""
