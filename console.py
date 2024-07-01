@@ -36,8 +36,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             for clss_key, value in self.clss_name.items():
                 if clss_key == list_t[0]:
-
-                    base = value()
+                    v = self.clss_name[clss_key]
+                    base = v()
                     break
             print(base.id)
             base.save()
