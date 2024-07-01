@@ -77,12 +77,12 @@ class HBNBCommand(cmd.Cmd):
             flag = 0
             try:
                 with open('file.json', 'r') as r:
-                    flag = 1
                     json_obj = json.load(r)
                     base_n_id = list_t[0] + '.' + list_t[1]
 
                     for key, value in json_obj.items():
                         if key == base_n_id:
+                            flag = 1
                             del json_obj[key]
                             break
             except FileNotFoundError:
@@ -90,6 +90,8 @@ class HBNBCommand(cmd.Cmd):
             if flag == 1:
                 with open('file.json', 'w') as w:
                     json.dump(json_obj, w)
+            else:
+                print("** no instance found **")
 
     def do_all(self, clss):
         """prints all string representation of all instance
