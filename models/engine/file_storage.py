@@ -36,7 +36,8 @@ class FileStorage:
         """ instance of the class """
         from models.base_model import BaseModel
 
-        dic = {'BaseModel': BaseModel}
+        dic = {'BaseModel': BaseModel
+                'User': User }
         r = dic[key]
         return r(**dicct)
 
