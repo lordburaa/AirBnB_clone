@@ -139,9 +139,10 @@ class HBNBCommand(cmd.Cmd):
                     base, idd = key.split('.')
                     for k, v in self.clss_name.items():
                         
-                        if (arg[0] == base):
-                            inss = self.clss_name[base]
-                            list_t.append(str(inss(**value)))
+                        if (k == base and k==arg[0]):
+                            lss = self.clss_name[k]
+                            list_t.append(str(lss(**value)))
+                            break
             unq = list(set(list_t))
             print(unq)
         else:
