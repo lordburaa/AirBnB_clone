@@ -6,4 +6,5 @@ from models.user import User
 from models.base_model import BaseModel
 class TestUser(unittest.TestCase):
     """ test for the class User """
-    pass
+    def test_instantiate(self):
+        self.assertEqual(type(User()), User)
