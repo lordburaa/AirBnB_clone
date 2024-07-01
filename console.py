@@ -137,10 +137,11 @@ class HBNBCommand(cmd.Cmd):
                 json_obj = json.load(r)
                 for key, value in json_obj.items():
                     base, idd = key.split('.')
-                    if (arg[0] == base):
-                        ins = self.clss_name[base]
+                    for k, v in self.clss_name.items():
                         
-                        list_t.append(str(ins(**value)))
+                        if (arg[0] == base):
+                            ins = self.clss_name[base]
+                            list_t.append(str(ins(**value)))
             unq = list(set(list_t))
             print(unq)
         else:
