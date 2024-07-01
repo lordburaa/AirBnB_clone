@@ -140,8 +140,8 @@ class HBNBCommand(cmd.Cmd):
                     for k, v in self.clss_name.items():
                         
                         if (arg[0] == base):
-                            ins = self.clss_name[base]
-                            list_t.append(str(ins(**value)))
+                            inss = self.clss_name[base]
+                            list_t.append(str(inss(**value)))
             unq = list(set(list_t))
             print(unq)
         else:
