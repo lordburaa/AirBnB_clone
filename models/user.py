@@ -12,8 +12,7 @@ class User(BaseModel):
     """
     def __init__(self, *args, **kwargs):
         """ initalization """
-        if not kwargs:
-            super().__init__()
+        super().__init__()
         self.email = ''
         self.password = ''
         self.first_name = ''

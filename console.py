@@ -117,8 +117,8 @@ class HBNBCommand(cmd.Cmd):
                             if base == k:
                                 inss = self.clss_name[k]
                                 list_t.append(str(inss(**value)))
-                
-                print(list_t)
+                unq = list(set(list_t)) 
+                print(unq)
             except FileNotFoundError:
                 print(list_t)
         elif arg[0] in self.clss_name:
@@ -130,14 +130,11 @@ class HBNBCommand(cmd.Cmd):
                         ins = self.clss_name[base]
                         
                         list_t.append(str(ins(**value)))
-            print(list_t)
+            unq = list(set(list_t))
+            print(unq)
         else:
             print("** class doesn't exist **")
     
-    def fun(self, cl, **value):
-        """ returiing the instance based on the class **"""
-        #cls = self.clss_name[cl]
-        return str(cl(**value))
 
     def do_update(self, arg):
         """updates an instance based on the class name and id"""
