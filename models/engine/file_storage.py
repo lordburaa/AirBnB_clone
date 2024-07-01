@@ -35,6 +35,7 @@ class FileStorage:
     def cls(self, key, **dicct):
         """ instance of the class """
         from models.base_model import BaseModel
+        from models.user import User
 
         dic = {'BaseModel': BaseModel,
                 'User': User }
