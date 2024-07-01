@@ -17,6 +17,6 @@ class User(BaseModel):
         self.first_name = ''
         self.last_name = ''
         if kwargs:
-            super().__init__(*args, **kwargs)
+            super().__init__(**kwargs)
         else:
             super().__init__()
