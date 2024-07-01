@@ -11,7 +11,8 @@ import re
 class HBNBCommand(cmd.Cmd):
     """cmd interactive shell"""
     prompt = '(hbnb) '
-    clss_name = ["BaseModel", "User"]
+    clss_name = {"BaseModel": BaseModel, "User": User } # changing from list to dictionary
+
 
     def default(self, line):
         """default when no argument is passed"""
@@ -108,7 +109,11 @@ class HBNBCommand(cmd.Cmd):
                     json_obj = json.load(r)
                     for key, value in json_obj.items():
                         base, idd = key.split('.')
-                        list_t.append(str(BaseModel(**value)))
+                        inss = self.clss_name[base]
+                        print(value)
+                        list_t.append((self.fun(base, **value)))
+                        print("AFTRE PASSING THE DICITNARY")
+                
                 print(list_t)
             except FileNotFoundError:
                 print(list_t)
@@ -118,10 +123,17 @@ class HBNBCommand(cmd.Cmd):
                 for key, value in json_obj.items():
                     base, idd = key.split('.')
                     if (arg[0] == base):
-                        list_t.append(str(BaseModel(**value)))
+                        ins = self.clss_name[base]
+                        
+                        list_t.append(str(ins(**value)))
             print(list_t)
         else:
             print("** class doesn't exist **")
+    
+    def fun(self, cl, **value):
+        """ returiing the instance based on the class **"""
+        cls = self.clss_name[cl]
+        return cls(**value)
 
     def do_update(self, arg):
         """updates an instance based on the class name and id"""
