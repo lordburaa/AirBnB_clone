@@ -17,7 +17,6 @@ class User(BaseModel):
         self.password = ''
         self.first_name = ''
         self.last_name = ''
-        self.__dict__['__class__'] = 'User'
         if kwargs:
             super().__init__(*args, **kwargs)
 
