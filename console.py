@@ -46,7 +46,6 @@ class HBNBCommand(cmd.Cmd):
         """prints the string representation of an instance
         based on  the CLASS name"""
         list_t = list(clss.split(' '))
-        print(list_t)
         if not clss:
             print("** class name missing **")
         elif list_t[0] not in self.clss_name:
@@ -62,8 +61,15 @@ class HBNBCommand(cmd.Cmd):
                     if base_n_id not in json_obj:
                         flag = 1
                     for key, value in json_obj.items():
-                        if (base_n_id == key):
-                            print(BaseModel(**value))
+                        base, idd = key.split('.')
+                        base_n_id = list_t[0] + '.' + list_t[1]
+
+                        for k, v in self.clss_name.items():
+                            if (base_n_id == key and k == base):
+                                va = self.clss_name[k]
+                                print(va(**value))
+                                break
+
                     if flag:
                         print("** no instance found **")
             except FileNotFoundError:
