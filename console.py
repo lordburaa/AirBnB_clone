@@ -64,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, clss):
-        """destroy an instance basd on the class name """
+        """destroy an instance basd on the class name"""
         list_t = list(clss.split(' '))
         if not clss:
             print("** class name missing **")
@@ -74,17 +74,22 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             json_obj = {}
-            with open('file.json', 'r') as r:
-                json_obj = json.load(r)
-                base_n_id = list_t[0] + '.' + list_t[1]
+            flag = 0
+            try:
+                with open('file.json', 'r') as r:
+                    flag = 1
+                    json_obj = json.load(r)
+                    base_n_id = list_t[0] + '.' + list_t[1]
 
-                for key, value in json_obj.items():
-                    base, idd = key.split('.')
-                    if key == base_n_id:
-                        del json_obj[key]
-                        break
-            with open('file.json', 'w') as w:
-                json.dump(json_obj, w)
+                    for key, value in json_obj.items():
+                        if key == base_n_id:
+                            del json_obj[key]
+                            break
+            except FileNotFoundError:
+                flag = 0
+            if flag:
+                with open('file.json', 'w') as w:
+                    json.dump(json_obj, w)
 
     def do_all(self, clss):
         """prints all string representation of all instance
