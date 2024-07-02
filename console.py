@@ -161,8 +161,8 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             json_obj = {}
-            with open('file.json', 'r+') as w:
-                json_obj = json.load(w)
+            with open('file.json', 'r+') as r:
+                json_obj = json.load(r)
                 key = list_t[0] + '.' + list_t[1]
                 if key not in json_obj:
                     print("** no instance found **")
@@ -182,8 +182,8 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         value[list_t[2]] = list_t[3].strip()
                     json_obj[key] = value
-                    #w.seek(0)
-                json.dump(json_obj, w)
+                    with open('file.json', 'w') as w:
+                        json.dump(json_obj, w)
 
     def do_quit(self, line):
         """Quit command to exit the program\n"""
