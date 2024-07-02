@@ -171,7 +171,10 @@ class HBNBCommand(cmd.Cmd):
                 elif len(list_t) == 3:
                     print("** value missing **")
                 else:
-                    value = json_obj[key]
+                    for keyy, valuee in json_obj.items():
+                        if keyy == key:
+                            value = json_obj[key]
+                            break
                     if (list_t[3].startswith('"') and list_t[3].endswith('"')) or\
                        (list_t[3].startswith("'") and list_t[3].endswith("'")):
                         att_value = list_t[3][1:-1]
