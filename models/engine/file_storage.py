@@ -9,7 +9,7 @@ class FileStorage:
     """ storage for the file """
     __file_path = "file.json"
     __objects = {}
-    
+
     def __init__(self):
         """ initialization """
         pass
@@ -37,8 +37,7 @@ class FileStorage:
         from models.base_model import BaseModel
         from models.user import User
 
-        dic = {'BaseModel': BaseModel,
-                'User': User }
+        dic = {'BaseModel': BaseModel, 'User': User}
         r = dic[key]
         return r(**dicct)
 
@@ -54,5 +53,5 @@ class FileStorage:
                     for key, value in obj.items():
                         base = value['__class__']
                         FileStorage.__objects[key] = self.cls(base, **value)
-                except:
+                except FileNotFoundError:
                     pass

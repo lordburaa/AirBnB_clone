@@ -175,9 +175,7 @@ class HBNBCommand(cmd.Cmd):
                         if keyy == key:
                             value = json_obj[key]
                             break
-                    if (list_t[3].startswith('"') and
-                        list_t[3].endswith('"')) or
-                    (list_t[3].startswith("'") and list_t[3].endswith("'")):
+                    if (list_t[3].startswith('"') and list_t[3].endswith('"')) or (list_t[3].startswith("'") and list_t[3].endswith("'")):
                         att_value = list_t[3][1:-1]
                         value[list_t[2]] = att_value
                     else:
