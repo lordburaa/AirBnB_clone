@@ -3,6 +3,11 @@
 import cmd
 import json
 from models.base_model import BaseModel
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.amenity import Amenity
 from models.user import User
 from models import storage
 import re
@@ -11,7 +16,9 @@ import re
 class HBNBCommand(cmd.Cmd):
     """cmd interactive shell"""
     prompt = '(hbnb) '
-    clss_name = {"BaseModel": BaseModel, "User": User}
+    clss_name = {"BaseModel": BaseModel, "User": User,
+                'State': State, 'City': City, 'Place': Place,
+                'Review': Review, 'Amenity': Amenity}
 
     def default(self, line):
         """default when no argument is passed"""

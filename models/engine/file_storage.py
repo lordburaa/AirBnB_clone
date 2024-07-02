@@ -39,11 +39,11 @@ class FileStorage:
         from models.city import City
         from models.place import Place
         from models.state import State
-        from models.review import review
+        from models.review import Review
         
         dic = {'BaseModel': BaseModel, 'User': User,
-                'City' : City, 'Place' : Place,
-                'State' : State, 'review' : review}
+                'City': City, 'Place': Place,
+                'State': State, 'review': review}
         r = dic[key]
         return r(**dicct)
 
