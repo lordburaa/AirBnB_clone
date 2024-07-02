@@ -58,6 +58,7 @@ class HBNBCommand(cmd.Cmd):
                     json_obj = json.load(r)
                     base_n_id = list_t[0] + '.' + list_t[1]
                     flag = 0
+                    le = 0
                     if base_n_id not in json_obj:
                         flag = 1
                     for key, value in json_obj.items():
@@ -68,12 +69,10 @@ class HBNBCommand(cmd.Cmd):
                             if (base_n_id == key and k == base):
                                 va = self.clss_name[k]
                                 print(str(va(**value)))
-                                flag = 1
+                                le = 1
                                 break
-                        if flag:
-                            flag = 0
+                        if (le == 1):
                             break
-
                     if flag:
                         print("** no instance found **")
             except FileNotFoundError:
