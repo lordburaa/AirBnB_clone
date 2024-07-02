@@ -68,6 +68,10 @@ class HBNBCommand(cmd.Cmd):
                             if (base_n_id == key and k == base):
                                 va = self.clss_name[k]
                                 print(str(va(**value)))
+                                flag = 1
+                                break
+                            if flag:
+                                flag = 0
                                 break
 
                     if flag:
