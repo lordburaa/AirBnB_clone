@@ -131,8 +131,7 @@ class HBNBCommand(cmd.Cmd):
                             if base == k:
                                 inss = self.clss_name[k]
                                 list_t.append(str(inss(**value)))
-                unq = list(set(list_t)) 
-                print(unq)
+                    print(list_t)
             except FileNotFoundError:
                 print(list_t)
         elif arg[0] in self.clss_name:
