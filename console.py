@@ -182,7 +182,7 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         value[list_t[2]] = list_t[3].strip()
                     json_obj[key] = value
-                    w.seek(0)
+                    #w.seek(0)
                     json.dump(json_obj, w)
 
     def do_quit(self, line):
