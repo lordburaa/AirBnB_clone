@@ -10,9 +10,7 @@ class User(BaseModel):
     """
     user base class is created
     """
-    def __init__(self, *args, **kwargs):
-        """ initalization """
-        email = ""
-        password = ""
-        first_name = ""
-        last_name = ""
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""
