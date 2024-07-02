@@ -70,9 +70,9 @@ class HBNBCommand(cmd.Cmd):
                                 print(str(va(**value)))
                                 flag = 1
                                 break
-                            if flag:
-                                flag = 0
-                                break
+                        if flag:
+                            flag = 0
+                            break
 
                     if flag:
                         print("** no instance found **")
