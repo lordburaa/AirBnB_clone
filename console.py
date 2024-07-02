@@ -11,8 +11,7 @@ import re
 class HBNBCommand(cmd.Cmd):
     """cmd interactive shell"""
     prompt = '(hbnb) '
-    clss_name = {"BaseModel": BaseModel, "User": User } # changing from list to dictionary
-
+    clss_name = {"BaseModel": BaseModel, "User": User}
 
     def default(self, line):
         """default when no argument is passed"""
@@ -114,9 +113,10 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, clss):
-        """prints all string representation of an instance 
+        """prints all string representation of an instance
         use bare `all` command to print all instance in the storage
-        use `all command_base` if command_base is exist in the storage it will print all the instance
+        use `all command_base` if command_base is exist in the storage
+        it will print all the instance
         """
         list_t = []
 
@@ -140,8 +140,7 @@ class HBNBCommand(cmd.Cmd):
                 for key, value in json_obj.items():
                     base, idd = key.split('.')
                     for k, v in self.clss_name.items():
-                        
-                        if (k == base and k==arg[0]):
+                        if (k == base and k == arg[0]):
                             lss = self.clss_name[k]
                             list_t.append(str(lss(**value)))
                             break
@@ -149,7 +148,6 @@ class HBNBCommand(cmd.Cmd):
             print(unq)
         else:
             print("** class doesn't exist **")
-    
 
     def do_update(self, arg):
         """updates an instance based on the class name and id"""
@@ -177,8 +175,9 @@ class HBNBCommand(cmd.Cmd):
                         if keyy == key:
                             value = json_obj[key]
                             break
-                    if (list_t[3].startswith('"') and list_t[3].endswith('"')) or\
-                       (list_t[3].startswith("'") and list_t[3].endswith("'")):
+                    if (list_t[3].startswith('"') and
+                        list_t[3].endswith('"')) or
+                    (list_t[3].startswith("'") and list_t[3].endswith("'")):
                         att_value = list_t[3][1:-1]
                         value[list_t[2]] = att_value
                     else:
