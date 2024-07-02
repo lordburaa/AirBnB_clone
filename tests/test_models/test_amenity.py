@@ -2,11 +2,11 @@
 """ test for the state """
 
 from models.base_model import BaseModel
-from models.place import Place
+from models.amenity import Amenity
 import unittest
 
 
-class TestPlace(unittest.TestCase):
+class TestAmenity(unittest.TestCase):
     """test State """
 
     pass
