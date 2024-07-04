@@ -224,8 +224,6 @@ class HBNBCommand(cmd.Cmd):
                         att_value = list_t[3][1:-1]
                         value[list_t[2]] = att_value
                     else:
-                        if isinstance(list_t[3],int):
-                            print("its int")
                         value[list_t[2]] = int(list_t[3].strip())
                         #remove the strip
                     json_obj[key] = value
