@@ -224,7 +224,10 @@ class HBNBCommand(cmd.Cmd):
                         att_value = list_t[3][1:-1]
                         value[list_t[2]] = att_value
                     else:
-                        value[list_t[2]] = list_t[3].strip()
+                        if isinstance(list_t[3],int):
+                            print("its int")
+                        value[list_t[2]] = int(list_t[3].strip())
+                        #remove the strip
                     json_obj[key] = value
                     with open('file.json', 'w') as w:
                         json.dump(json_obj, w)
@@ -242,7 +245,30 @@ class HBNBCommand(cmd.Cmd):
                 if base == list_t[0]:
                     count = count + 1
         print(count)
-
+    def do_update2(self, arg):
+        """
+        update
+        """
+        if not arg:
+            print("** class name missing **")
+            return 
+        my_dictionary = "{" + arg.split("{")[1]
+        my_data = shlex.split(arg)
+        dic_t = {}
+        with open('file.json') as r:
+            dic_t = json.load(r)
+        if my_data[0] not in self.clss_name:
+            print("** class doesn't exist **")
+            return
+        if (len(my_data) == 1):
+            print("** instance id missing **")
+            return
+        try:
+            key = my_data[0] + "." + my_data[1]
+            dic_t[key]
+        except KeyError:
+            print("** no instance found **")
+            return
     def do_quit(self, line):
         """Quit command to exit the program\n"""
         return True
