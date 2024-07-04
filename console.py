@@ -25,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
         """default when no argument is passed"""
         val_dict = {
                 "all": self.do_all,
-                
+                "count": self.count,
                 "show": self.do_show,
                 "destory": self.do_destroy,
                 "update": self.do_update
@@ -226,6 +226,20 @@ class HBNBCommand(cmd.Cmd):
                     json_obj[key] = value
                     with open('file.json', 'w') as w:
                         json.dump(json_obj, w)
+
+    def count(self, arg):
+        """count func"""
+        count = 0
+        json_dict = {}
+        list_t = arg.split(" ")
+        with open('file.json') as w:
+            json_dict = json.load(w)
+        if json_dict:
+            for key, value in json_dict.items():
+                base, idd = key.split(".")
+                if base == list_t[0]:
+                    count = count + 1
+        print(count)
 
     def do_quit(self, line):
         """Quit command to exit the program\n"""
