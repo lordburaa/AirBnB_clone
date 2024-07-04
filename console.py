@@ -27,7 +27,7 @@ class HBNBCommand(cmd.Cmd):
                 "all": self.do_all,
                 "count": self.count,
                 "show": self.do_show,
-                "destory": self.do_destroy,
+                "destroy": self.do_destroy,
                 "update": self.do_update
                 }
         arg = arg.strip()
