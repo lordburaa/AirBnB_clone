@@ -48,7 +48,6 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             inputs = values[1].split("(")[1].split(",")
-            print("print inputs : ", inputs)
             num = 0
             for num in range(len(inputs)):
 
