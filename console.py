@@ -47,12 +47,15 @@ class HBNBCommand(cmd.Cmd):
             self.do_update2(line.strip())
             return
         try:
-            inputs = values[1].split("(")[1].split(".")
+            inputs = values[1].split("(")[1].split(",")
+            print("print inputs : ", inputs)
             num = 0
-            if (num != len(inputs) - 1):
-                line = line + " " + shlex.split(inputs[num])[0]
-            else:
-                line = line + " " + shlex.split(inputs[num][0: -1])[0]
+            for num in range(len(inputs)):
+
+                if (num != len(inputs) - 1):
+                    line = line + " " + shlex.split(inputs[num])[0]
+                else:
+                    line = line + " " + shlex.split(inputs[num][0: -1])[0]
         except IndexError:
             inputs = ""
             line = ""
