@@ -43,7 +43,7 @@ class FileStorage:
         
         dic = {'BaseModel': BaseModel, 'User': User,
                 'City': City, 'Place': Place,
-                'State': State, 'review': review}
+                'State': State, 'review': Review}
         r = dic[key]
         return r(**dicct)
 

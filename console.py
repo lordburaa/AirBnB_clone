@@ -2,6 +2,7 @@
 """console log"""
 import cmd
 import json
+import shlex
 from models.base_model import BaseModel
 from models.state import State
 from models.city import City
@@ -20,9 +21,44 @@ class HBNBCommand(cmd.Cmd):
                 'State': State, 'City': City, 'Place': Place,
                 'Review': Review, 'Amenity': Amenity}
 
-    def default(self, line):
+    def default(self, arg):
         """default when no argument is passed"""
-        pass
+        val_dict = {
+                "all": self.do_all,
+                
+                "show": self.do_show,
+                "destory": self.do_destroy,
+                "update": self.do_update
+                }
+        arg = arg.strip()
+        values = arg.split(".")
+        if len(values) != 2:
+            cmd.Cmd.default(self, arg)
+            return 
+        class_name = values[0]
+        command = values[1].split("(")[0]
+        line = ""
+
+        if (command == "update" and values[1].split("(")[1][-2] == "}"):
+            inputs = values[1].split("(")[1].split(",", 1)
+            inputs[0] = shlex.split(inputs[0])[0]
+            line = "".join(inputs[0])[0:-1]
+            line = class_name + " " + line
+            self.do_update2(line.strip())
+            return
+        try:
+            inputs = values[1].split("(")[1].split(".")
+            for num in range(len(inputs)):
+                if (num != len(inputs) - 1):
+                    line = line + " " + shlex.split(inputs[num])[0]
+                else:
+                    line = line + " " + shlex.split(inputs[num][0: -1])[0]
+        except IndexError:
+            inputs = ""
+            line = ""
+        line = class_name + line
+        if command in val_dict.keys():
+            val_dict[command](line.strip())
 
     def help(self):
         """Help command"""
