@@ -190,6 +190,7 @@ class HBNBCommand(cmd.Cmd):
         list_t = []
 
         arg = list(clss.split(' '))
+        storage.reload()
         dic_t = storage.all()
         if not clss:
             for key, value in dic_t.items():
