@@ -4,3 +4,11 @@
 ## Welcome to the AirBnB clone project!
 
 # Requirements
+
+### Execution
+`$ ./console
+ (hbnb) help
+ Documented commands (type help <topic>):
+========================================
+EOF  all  count  create  destroy  help  quit  show  update  update2
+`
