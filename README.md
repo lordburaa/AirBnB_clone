@@ -6,7 +6,7 @@
 # Requirements
 
 ### Execution
-`$ ./console
+`./console
  (hbnb) help
  Documented commands (type help <topic>):
 ========================================
