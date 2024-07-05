@@ -97,16 +97,17 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             """REFRACTE THE BELOW ELSE CODE """
+            """dic_t = {}
             dic_t = storage.all()
             key = list_t[0] + '.' + list_t[1]
             if key in dic_t:
                 print(str(dic_t[key]))
             else:
                 print("** no instance found **")
-
+            """
             
             """END OF THE REFRACTOR """
-            """
+            
             try:
                 with open('file.json', 'r') as r:
                     json_obj = json.load(r)
@@ -131,7 +132,7 @@ class HBNBCommand(cmd.Cmd):
                         print("** no instance found **")
             except FileNotFoundError:
                 print("** no instance found **")
-            """
+        
     def do_destroy(self, clss):
         """destroy an instance basd on the class name"""
         list_t = list(clss.split(' '))
