@@ -267,6 +267,25 @@ class HBNBCommand(cmd.Cmd):
         except KeyError:
             print("** no instance found **")
             return
+        
+        if (my_dictionary == "{"):
+            print("** attribute name missing **")
+            return
+
+        my_dictionary = my_dictionary.replace("\'", "\"")
+        my_dictionary = json.loads(my_dictionary)
+        my_instance = dic_t[key]
+
+        for my_key in my_dictionary:
+            #data_type = type(getattr(my_instance, my_key))
+            #setattr(my_instance, my_key, my_dictionary[my_key])
+            my_instance[my_key] = my_dictionary[key]
+               
+        # save to the file
+        with open("file.json", "r+") as rw:
+            dic_t[key] = my_instance
+            json.dump(dic_t, rw)
+
     def do_quit(self, line):
         """Quit command to exit the program\n"""
         return True
