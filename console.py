@@ -282,7 +282,7 @@ class HBNBCommand(cmd.Cmd):
         con = {**my_dictionary, **my_instance}
         dic_t[key] = con
         # save to the file
-        with open("file.json", "w+") as rw:
+        with open("file.json", "w") as rw:
             json.dump(dic_t, rw)
 
     def do_quit(self, line):
