@@ -15,9 +15,14 @@ create all unittests to validate all our classes and storage engine
 # Requirements
 
 ### Execution
-```./console
- (hbnb) help
+```$./console
+(hbnb) help
  Documented commands (type help <topic>):
 ========================================
 EOF  all  count  create  destroy  help  quit  show  update  update2
+(hbnb)
+(hbnb)
+(hbnb) quit
+$
 ```
+
