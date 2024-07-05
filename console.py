@@ -266,7 +266,7 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             key = my_data[0] + "." + my_data[1]
-            dic_t[key]:
+            dic_t[key]
                 
         except KeyError:
             print("** no instance found **")
