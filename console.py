@@ -25,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
         """default when no argument is passed"""
         val_dict = {
                 "all": self.do_all,
-                "count": self.count,
+                "count": self.do_count,
                 "show": self.do_show,
                 "destroy": self.do_destroy,
                 "update": self.do_update
@@ -50,7 +50,6 @@ class HBNBCommand(cmd.Cmd):
             inputs = values[1].split("(")[1].split(",")
             num = 0
             for num in range(len(inputs)):
-
                 if (num != len(inputs) - 1):
                     line = line + " " + shlex.split(inputs[num])[0]
                 else:
@@ -230,7 +229,7 @@ class HBNBCommand(cmd.Cmd):
                     with open('file.json', 'w') as w:
                         json.dump(json_obj, w)
 
-    def count(self, arg):
+    def do_count(self, arg):
         """count func"""
         count = 0
         json_dict = {}
