@@ -77,14 +77,11 @@ class HBNBCommand(cmd.Cmd):
         elif list_t[0] not in self.clss_name:
             print("** class doesn't exist **")
         else:
-            for clss_key, value in self.clss_name.items():
-                if clss_key == list_t[0]:
-                    v = self.clss_name[clss_key]
-                    base = v()
-                    break
-            print(base.id)
-            base.save()
+            obj = self.clss_name[list_t[0]]()
 
+            storage.new(obj)
+            storage.save()
+    
     def do_show(self, clss):
         """prints the string representation of an instance
         based on  the CLASS name"""
