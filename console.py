@@ -253,8 +253,11 @@ class HBNBCommand(cmd.Cmd):
         my_dictionary = "{" + arg.split("{")[1]
         my_data = shlex.split(arg)
         dic_t = {}
-        with open('file.json') as r:
-            dic_t = json.load(r)
+        try:
+            with open('file.json') as r:
+                dic_t = json.load(r)
+        except FileNotFoundError:
+            pass
         if my_data[0] not in self.clss_name:
             print("** class doesn't exist **")
             return
@@ -263,8 +266,8 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             key = my_data[0] + "." + my_data[1]
-            if dic_t[key]:
-                pass
+            dic_t[key]:
+                
         except KeyError:
             print("** no instance found **")
             return
@@ -279,7 +282,7 @@ class HBNBCommand(cmd.Cmd):
         con = {**my_dictionary, **my_instance}
         dic_t[key] = con
         # save to the file
-        with open("file.json", "r+") as rw:
+        with open("file.json", "w+") as rw:
             json.dump(dic_t, rw)
 
     def do_quit(self, line):
