@@ -70,7 +70,11 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, cls):
-        """create new instance of BaseModel and Save to JSON File"""
+        """
+        Create new instance of class
+        variable lis_t => list_t[0] is class name to be created
+
+        """
         list_t = list(cls.split(' '))
         if not cls:
             print("** class name missing **")
@@ -186,7 +190,20 @@ class HBNBCommand(cmd.Cmd):
         list_t = []
 
         arg = list(clss.split(' '))
+        dic_t = storage.all()
         if not clss:
+            for key, value in dic_t.items():
+                list_t.append(str(value))
+        else:
+            class_name = arg[0]
+            for key, value in  dic_t.items():
+                base, idd = key.split('.')
+                if base == class_name:
+                    list_t.append(str(value))
+        
+        print(list_t)
+
+        """if not clss:
             try:
                 with open('file.json', 'r') as r:
                     json_obj = json.load(r)
@@ -213,7 +230,7 @@ class HBNBCommand(cmd.Cmd):
             print(unq)
         else:
             print("** class doesn't exist **")
-
+        """
     def do_update(self, arg):
         """updates an instance based on the class name and id"""
         list_t = list(arg.split(' '))
