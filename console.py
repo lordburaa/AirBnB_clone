@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
         if (command == "update" and values[1].split("(")[1][-2] == "}"):
             inputs = values[1].split("(")[1].split(",", 1)
             inputs[0] = shlex.split(inputs[0])[0]
-            line = "".join(inputs[0])[0:-1]
+            line = "".join(inputs)[0:-1]
             line = class_name + " " + line
             self.do_update2(line.strip())
             return
@@ -224,7 +224,7 @@ class HBNBCommand(cmd.Cmd):
                         att_value = list_t[3][1:-1]
                         value[list_t[2]] = att_value
                     else:
-                        value[list_t[2]] = int(list_t[3].strip())
+                        value[list_t[2]] = (list_t[3])
                         #remove the strip
                     json_obj[key] = value
                     with open('file.json', 'w') as w:
@@ -243,6 +243,7 @@ class HBNBCommand(cmd.Cmd):
                 if base == list_t[0]:
                     count = count + 1
         print(count)
+
     def do_update2(self, arg):
         """
         update
