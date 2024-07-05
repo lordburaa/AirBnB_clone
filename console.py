@@ -192,17 +192,22 @@ class HBNBCommand(cmd.Cmd):
         arg = list(clss.split(' '))
         storage.reload()
         dic_t = storage.all()
+        flag = 0
         if not clss:
             for key, value in dic_t.items():
+                flag = 1
                 list_t.append(str(value))
         else:
             class_name = arg[0]
             for key, value in  dic_t.items():
                 base, idd = key.split('.')
                 if base == class_name:
+                    flag = 1
                     list_t.append(str(value))
-        
-        print(list_t)
+        if flag == 1:
+            print(list_t)
+        else:
+            print("** class doesn't exist **")
 
         """if not clss:
             try:
