@@ -78,7 +78,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             obj = self.clss_name[list_t[0]]()
-
+            print(obj.id)
             storage.new(obj)
             storage.save()
     
