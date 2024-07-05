@@ -144,6 +144,16 @@ class HBNBCommand(cmd.Cmd):
         elif len(list_t) == 1:
             print("** instance id missing **")
         else:
+            storage.reload()
+            dic_t = storage.all()
+            key = list_t[0] + '.' + list_t[1]
+            if key in dic_t:
+                del dic_t[key]
+                storage.save()
+            else:
+                print("** no instance found **")
+
+            """
             json_obj = {}
             flag = 0
             try:
@@ -168,6 +178,7 @@ class HBNBCommand(cmd.Cmd):
                     json.dump(json_obj, w)
             else:
                 print("** no instance found **")
+            """
 
     def do_all(self, clss):
         """prints all string representation of an instance
