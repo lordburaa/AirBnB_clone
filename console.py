@@ -263,7 +263,8 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             key = my_data[0] + "." + my_data[1]
-            dic_t[key]
+            if dic_t[key]:
+                pass
         except KeyError:
             print("** no instance found **")
             return
@@ -276,16 +277,10 @@ class HBNBCommand(cmd.Cmd):
         my_dictionary = json.loads(my_dictionary)
         my_instance = dic_t[key]
 
-        for my_key in my_dictionary:
-            if hasattr(my_instance, my_key):
-                data_type = type(getattr(my_instance, my_key))
-                setattr(my_instance, my_key, my_dictionary[my_key])
-            else:
-                setattr(my_instance, my_key ,my_dictionary[key])
-               
+        con = {**my_dictionary, **my_instance}
+        dic_t[key] = con
         # save to the file
         with open("file.json", "r+") as rw:
-            dic_t[key] = my_instance
             json.dump(dic_t, rw)
 
     def do_quit(self, line):
