@@ -6,9 +6,9 @@
 # Requirements
 
 ### Execution
-`./console
+```./console
  (hbnb) help
  Documented commands (type help <topic>):
 ========================================
 EOF  all  count  create  destroy  help  quit  show  update  update2
-`
+```
