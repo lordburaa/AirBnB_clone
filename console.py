@@ -272,7 +272,6 @@ class HBNBCommand(cmd.Cmd):
         if (my_dictionary == "{"):
             print("** attribute name missing **")
             return
-
         my_dictionary = my_dictionary.replace("\'", "\"")
         my_dictionary = json.loads(my_dictionary)
         my_instance = dic_t[key]
