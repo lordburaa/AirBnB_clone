@@ -100,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
             dic_t = storage.all()
             key = list_t[0] + '.' + list_t[1]
             if key in dic_t:
-                print(dic_t[key])
+                print(str(dic_t[key]))
             else:
                 print("** no instance found **")
 
